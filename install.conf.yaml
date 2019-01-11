@@ -1,3 +1,7 @@
+- defaults:
+    link:
+        relink: true
+
 - clean: ['~']
 
 - link:
@@ -5,5 +9,13 @@
     ~/.bashrc: bashrc
     ~/.bash_logout: bash_logout
     ~/.zshrc: zshrc
+    ~/.config/Code:
+        path: config/Code
+        create: true
+        force: true
+    ~/.config/mpv:
+        path: config/mpv
+        create: true
+        force: true
 
 
