@@ -9,8 +9,8 @@
     ~/.bashrc: bashrc
     ~/.bash_logout: bash_logout
     ~/.zshrc: zshrc
-    ~/.config/Code:
-        path: config/Code
+    ~/.config/Code/User:
+        path: config/Code/User
         create: true
         force: true
     ~/.config/mpv:
