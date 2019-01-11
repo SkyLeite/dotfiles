@@ -1,6 +1,22 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Zplug Plugins
+source ~/.zplug/init.zsh
+
+zplug "lukechilds/zsh-nvm"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
 # Path to your oh-my-zsh installation.
   export ZSH="/home/rodrigo/.oh-my-zsh"
 
@@ -36,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -96,3 +112,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias "cs=xclip -selection clipboard"
+alias "vs=xclip -o -selection clipboard"
+alias "c=code"
