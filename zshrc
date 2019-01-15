@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export PATH=$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH
+
 # Variables
 export GOPATH=$HOME/go
 
@@ -118,3 +120,10 @@ source $ZSH/oh-my-zsh.sh
 alias "cs=xclip -selection clipboard"
 alias "vs=xclip -o -selection clipboard"
 alias "c=code"
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/rodrigo/.nvm/versions/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/rodrigo/.nvm/versions/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/rodrigo/.nvm/versions/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/rodrigo/.nvm/versions/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh

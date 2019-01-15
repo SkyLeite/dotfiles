@@ -17,5 +17,7 @@
         path: config/mpv
         create: true
         force: true
-
-
+    ~/.config/nvim/init.vim:
+        path: config/nvim/init.vim
+        create: true
+        force: true
