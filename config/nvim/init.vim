@@ -7,7 +7,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'Quramy/tsuquyomi'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/denite.nvim'
@@ -31,7 +31,9 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
-colorscheme cosmic_latte
+" colorscheme cosmic_latte
+au ColorScheme * hi Normal ctermbg=none guibg=none
+au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -40,4 +42,3 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
-
