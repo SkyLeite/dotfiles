@@ -17,6 +17,9 @@ Plug 'nightsense/cosmic_latte'
 Plug 'ervandew/supertab'
 Plug 'vim-scripts/Rename2'
 Plug 'jiangmiao/auto-pairs'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'Shougo/echodoc.vim'
 
 call plug#end()
 
@@ -30,6 +33,8 @@ set relativenumber
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set completeopt=menu
+set cmdheight=2
 
 " colorscheme cosmic_latte
 au ColorScheme * hi Normal ctermbg=none guibg=none
@@ -38,6 +43,8 @@ au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#ignore_case = 1
+let g:deoplete#completeopt = 0
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
