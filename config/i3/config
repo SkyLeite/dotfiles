@@ -177,6 +177,7 @@ exec --no-startup-id xinput set-prop 12 291 1
 exec --no-startup-id xmodmap ~/.dotfiles/noLink/keymap
 exec_always --no-startup-id feh --bg-max --randomize ~/Wallpapers/pictures/* &
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
+exec --no-startup-id dunst
 
 # Gaps
 gaps inner 10
