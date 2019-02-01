@@ -170,7 +170,7 @@ exec --no-startup-id polybar example
 
 # Autostart commands
 exec --no-startup-id xinput set-prop 'DELL0829:00 06CB:7E92 Touchpad' 291 1
-exec --no-startup-id xmodmap ~/.dotfiles/noLink/keymap
+exec --no-startup-id setxkbmap -option caps:swapescape
 exec_always --no-startup-id feh --bg-max --randomize ~/Wallpapers/pictures/* &
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
 exec --no-startup-id dunst
