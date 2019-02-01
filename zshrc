@@ -127,3 +127,7 @@ alias "c=code"
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /home/rodrigo/.nvm/versions/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/rodrigo/.nvm/versions/node/v10.15.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /home/rodrigo/Repos/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /home/rodrigo/Repos/serverless/node_modules/tabtab/.completions/slss.zsh

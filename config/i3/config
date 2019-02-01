@@ -162,22 +162,20 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-}
+new_window 1pixel
 
 # Autostart applications
 exec --no-startup-id nm-applet
+exec --no-startup-id polybar example
 
 # Autostart commands
-exec --no-startup-id xinput set-prop 12 291 1
+exec --no-startup-id xinput set-prop 'DELL0829:00 06CB:7E92 Touchpad' 291 1
 exec --no-startup-id xmodmap ~/.dotfiles/noLink/keymap
 exec_always --no-startup-id feh --bg-max --randomize ~/Wallpapers/pictures/* &
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
 exec --no-startup-id dunst
+exec --no-startup-id xset +fp /home/rodrigo/.fonts
+exec --no-startup-id xset fp rehash
 
 # Gaps
 gaps inner 10
@@ -188,3 +186,6 @@ bindsym Shift_L + Print exec --no-startup-id spectacle -bf -o /tmp/copyshot.png 
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
