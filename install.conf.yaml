@@ -29,3 +29,11 @@
         path: systemd/user
         create: true
         force: true
+    ~/.config/polybar:
+        path: config/polybar
+        create: true
+        force: true
+    ~/.config/mopidy:
+        path: config/mopidy
+        create: true
+        force: true
