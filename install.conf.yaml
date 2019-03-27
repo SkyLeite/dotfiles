@@ -37,3 +37,7 @@
         path: config/mopidy
         create: true
         force: true
+    ~/.doom.d/config.el:
+        path: config/doom.d
+        create: true
+        force: true
