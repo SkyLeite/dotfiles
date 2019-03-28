@@ -38,6 +38,6 @@
         create: true
         force: true
     ~/.doom.d/config.el:
-        path: config/doom.d
+        path: config/doom.d/config.el
         create: true
         force: true
