@@ -5,6 +5,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Rust / Cargo garbage
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
@@ -20,6 +31,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/echodoc.vim'
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
@@ -49,3 +63,6 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:mkdp_auto_start = 1
+let g:mkdp_auto_close = 1
+
