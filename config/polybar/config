@@ -436,7 +436,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-left = i3 
-modules-center = mpd
+modules-center = i3
 modules-right = pulseaudio filesystem xbacklight xkeyboard memory cpu battery temperature date powermenu
 
 tray-position = right

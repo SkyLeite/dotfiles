@@ -26,10 +26,10 @@ bindsym $mod+d exec "rofi -combi-modi window,drun,ssh -show combi"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+ccedilla focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -38,10 +38,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ccedilla move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -50,7 +50,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -148,11 +148,12 @@ bindsym $mod+r mode "resize"
 new_window 1pixel
 
 # Autostart applications
-exec --no-startup-id nm-applet
-exec --no-startup-id $scriptsDir/launch_polybar.sh
+# exec --no-startup-id nm-applet
+# exec --no-startup-id $scriptsDir/launch_polybar.sh
+exec --no-startup-id tint2
 
 # Autostart commands
-exec --no-startup-id xinput set-prop $touchpad 291 1
+exec --no-startup-id xinput set-prop $touchpad  'libinput Tapping Enabled' 1
 exec --no-startup-id setxkbmap -option caps:swapescape
 exec_always --no-startup-id feh --bg-max --randomize $wallpapers* &
 exec --no-startup-id compton --config ~/.config/i3/compton.conf -b
@@ -178,3 +179,31 @@ bindsym $mod+p exec --no-startup-id $lockscreen
 
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo ~/.dotfiles/noLink/brightness inc 500
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo ~/.dotfiles/noLink/brightness dec 500
+
+# >>> Plasma Integration <<<
+
+# Try to kill the wallpaper set by Plasma (it takes up the entire workspace
+# and hides everythiing)
+exec --no-startup-id wmctrl -c Plasma
+for_window [class="yakuake"] floating enable
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [title="plasma-desktop"] floating enable, border none
+
+# Avoid tiling popups, dropdown windows from plasma
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable
+for_window [class="krunner"] floating enable
+for_window [class="Kmix"] floating enable
+for_window [class="Klipper"] floating enable
+for_window [class="Plasmoidviewer"] floating enable
+
+# >>> Window Rules <<<
+
+# >>> Avoid tiling for non-Plasma stuff <<<
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable 
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
