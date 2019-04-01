@@ -169,8 +169,8 @@ gaps inner 10
 bindsym Print exec --no-startup-id spectacle -br -o /tmp/copyshot.png && xclip -sel clip -t image/png /tmp/copyshot.png
 bindsym Shift_L + Print exec --no-startup-id spectacle -bf -o /tmp/copyshot.png && xclip -sel clip -t image/png /tmp/copyshot.png
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPrev exec --no-startup-id mpc prev

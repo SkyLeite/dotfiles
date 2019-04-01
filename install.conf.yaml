@@ -41,7 +41,7 @@
         path: config/doom.d/config.el
         create: true
         force: true
-    ~/.config/tint2/tint2rc
+    ~/.config/tint2/tint2rc:
         path: config/tint2/tint2rc
         create: true
         force: true
