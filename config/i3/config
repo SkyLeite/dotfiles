@@ -148,7 +148,8 @@ bindsym $mod+r mode "resize"
 new_window 1pixel
 
 # Autostart applications
-# exec --no-startup-id nm-applet
+exec --no-startup-id flameshot
+exec --no-startup-id nm-applet
 # exec --no-startup-id $scriptsDir/launch_polybar.sh
 exec --no-startup-id tint2
 
@@ -166,8 +167,7 @@ exec_always --no-startup-id ~/.dotfiles/xrandr/apply.sh $xrandrLayouts
 gaps inner 10
 
 # Custom shortcuts
-bindsym Print exec --no-startup-id spectacle -br -o /tmp/copyshot.png && xclip -sel clip -t image/png /tmp/copyshot.png
-bindsym Shift_L + Print exec --no-startup-id spectacle -bf -o /tmp/copyshot.png && xclip -sel clip -t image/png /tmp/copyshot.png
+bindsym Print exec --no-startup-id flameshot gui
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%

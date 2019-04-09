@@ -15,7 +15,7 @@
     ;; enable typescript-tslint checker
     (flycheck-add-mode 'typescript-tslint 'web-mode))
 )
-
+(setq exec-path (append exec-path '("~/.nvm/versions/node/v10.15.3/bin")))
 (map! :leader
       :prefix ("o" . "open")
        :when (featurep! :tools vterm)
