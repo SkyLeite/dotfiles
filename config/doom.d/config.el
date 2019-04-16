@@ -5,6 +5,7 @@
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 3))
 
+;; Typescript React stuff
 (after! web-mode
 (after! tide
     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
@@ -16,8 +17,43 @@
     (flycheck-add-mode 'typescript-tslint 'web-mode))
 )
 (setq exec-path (append exec-path '("~/.nvm/versions/node/v10.15.3/bin")))
+
+;; Custom bindings
 (map! :leader
       :prefix ("o" . "open")
        :when (featurep! :tools vterm)
        :desc "Terminal"          "T" #'+vterm/open
        :desc "Terminal in popup" "t" #'+vterm/open-popup-in-project)
+
+;; Org-publish shenanigans
+;; TODO Make this actually work sometime
+(require 'ox-publish)
+(setq org-publish-project-alist
+      '(
+            ("org-notes"
+            :base-directory "~/Repos/blog"
+            :base-extension "org"
+            :publishing-directory "~/public_html/"
+            :recursive t
+            :publishing-function org-html-publish-to-html
+            :headline-levels 4             ; Just the default for this project.
+            :auto-preamble t
+            )
+
+            ("org-static"
+            :base-directory "~/Repos/blog"
+            :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+            :publishing-directory "~/public_html/"
+            :recursive t
+            :publishing-function org-publish-attachment
+            )
+
+            ("org" :components ("org-notes" "org-static"))
+      ))
+
+;; Org capture templates
+(after! org-capture
+  (add-to-list 'org-capture-templates
+               '("s" "Song" entry (file+headline "~/org/bookmarks.org" "Music")
+                 "* TODO %x"))
+  )
