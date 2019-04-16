@@ -1,0 +1,16 @@
+#+TITLE: Dotfiles
+#+MACRO: mod Mod4
+
+Hi. Welcome to my dotfiles.
+
+* i3
+
+Default Mod Key: Mod4 (windows key)
+
+** Keybindings
+
+| Keybinding            | Command              | Action                   |
+|-----------------------+----------------------+--------------------------|
+| {{{mod}}} + Return    | i3-sensible-terminal | Opens a new terminal     |
+| {{{mod}}} + Shift + q | kill                 | Kills the focused window |
+| {{{mod}}} + d         |                      |                          |
