@@ -1,16 +1,191 @@
 #+TITLE: Dotfiles
-#+MACRO: mod Mod4
 
 Hi. Welcome to my dotfiles.
 
+# This is used to resolve macros when tangling
+#+BEGIN_SRC emacs-lisp :exports none
+(add-hook 'org-babel-pre-tangle-hook
+          (lambda () (org-macro-replace-all (org-macro--collect-macros))))
+#+END_SRC
+
 * i3
 
-Default Mod Key: Mod4 (windows key)
+** Constants
 
-** Keybindings
+#+MACRO: mod Mod4
+#+MACRO: lockscreen i3-lock-fancy
+#+MACRO: xrandrLayouts ~/.dotfiles/xrandr/layouts/
+#+MACRO: wallpapers ~/Wallpapers/pictures/
+#+MACRO: touchpad 'DELL0829:00 06CB:7E92 Touchpad'
+#+MACRO: scriptsDir ~/.dotfiles/scripts
 
-| Keybinding            | Command              | Action                   |
-|-----------------------+----------------------+--------------------------|
-| {{{mod}}} + Return    | i3-sensible-terminal | Opens a new terminal     |
-| {{{mod}}} + Shift + q | kill                 | Kills the focused window |
-| {{{mod}}} + d         |                      |                          |
+- Mod key: {{{mod}}}
+- Locksceren command: {{{lockscreen}}}
+- Directory with XRandr layouts: {{{xrandrLayouts}}}
+- Wallpaper directory: {{{wallpapers}}}
+- Touchpad name (for xinput): {{{touchpad}}}
+- Scripts directory: {{{scriptsDir}}}
+
+** Config
+
+#+NAME: config-table
+| Configuration     | Value                    | Description                                  |
+|-------------------+--------------------------+----------------------------------------------|
+| font              | pango:DejaVu Sans Mono 8 | Sets font                                    |
+| floating_modifier | Mod4                | Use Mouse+Mod4 to drag floating windows |
+| new_window        | 1pixel                   |                                              |
+| gaps              | inner 10                 | Sets gap size (i3-gaps only)                 |
+
+#+NAME: config-table-generator
+#+BEGIN_SRC emacs-lisp :var table=config-table :results output :exports results
+(dolist (row table)
+  (princ (format "%s %s # %s\n" (nth 0 row) (nth 1 row) (nth 2 row))))
+#+END_SRC
+
+** Keybinds
+
+*** Navigation and i3 stuff
+#+NAME: navigation-table
+| Keybind               | Command                                        | Action                                           |
+|-----------------------+------------------------------------------------+--------------------------------------------------|
+| Mod4+Return      | i3-sensible-terminal                           | Opens a new terminal                             |
+| Mod4+Shift+q     | kill                                           | Kills the focused window                         |
+| Mod4+d           | "rofi -combi-modi window,drun,ssh -show combi" | Runs rofi in combined mode                       |
+| Mod4+h           | focus left                                     |                                                  |
+| Mod4+j           | focus down                                     |                                                  |
+| Mod4+k           | focus up                                       |                                                  |
+| Mod4+l           | focus right                                    |                                                  |
+| Mod4+Shift+h     | move left                                      |                                                  |
+| Mod4+Shift+j     | move down                                      |                                                  |
+| Mod4+Shift+k     | move up                                        |                                                  |
+| Mod4+Shift+l     | move right                                     |                                                  |
+| Mod4+b           | split h                                        | Splits horizontally                              |
+| Mod4+v           | split v                                        | Splits vertically                                |
+| Mod4+f           | fullscreen toggle                              | Toggles fullscreen mode for the focused window   |
+| Mod4+s           | layout stacking                                | Sets layout to stacking                          |
+| Mod4+w           | layout tabbed                                  | Sets layout to tabbed                            |
+| Mod4+e           | layout toggle split                            | Toggles layout to split                          |
+| Mod4+Shift+space | floating toggle                                | Toggles floating for the current window          |
+| Mod4+space       | focus mode_toggle                              | Change focus between tiling and floating windows |
+| Mod4+a           | focus parent                                   | Focuses the parent window                        |
+| Mod4+Shift+c     | reload                                         | Reloads the configuration file                   |
+| Mod4+Shift+r     | restart                                        | Restarts i3 in place                             |
+| Mod4+r           | mode "resize"                                  | Toggles resize mode                              |
+
+#+NAME: navigation-table-generator
+#+BEGIN_SRC emacs-lisp :var table=navigation-table :results output :exports results
+(dolist (row table)
+  (princ (format "bindsym %s exec --no-startup-id %s # %s\n" (nth 0 row) (nth 1 row) (nth 2 row))))
+#+END_SRC
+
+*** Workspaces
+#+NAME: workspaces-table
+| Keybind    | Command       | Action                |
+|------------+---------------+-----------------------|
+| Mod4+ | workspace     | Switches to workspace |
+
+#+NAME: workspaces-table-generator
+#+BEGIN_SRC emacs-lisp :var table=workspaces-table :results output :exports results
+(let ((num 0))
+  (while (< num 10)
+    (setq num (+ num 1))
+    (princ (format "bindsym %s%d %s %d\n" (nth 0 (nth 0 table)) num (nth 1 (nth 0 table)) num))))
+#+END_SRC
+
+*** Shortcuts
+#+NAME: shortcuts-table
+| Keybind              | Command                               | Action                       |
+|----------------------+---------------------------------------+------------------------------|
+| Print                | flameshot gui                         | Starts flameshot in gui mode |
+| XF86AudioMute        | amixer -q -D pulse sset Master toggle | Toggles mute                 |
+| XF86AudioLowerVolume | pactl set-sink-volume 0 -5%           | Lowers volume by 5%          |
+| XF86AudioRaiseVolume | pactl set-sink-volume 0 +5%           | Raises volume by 5%          |
+| XF86AudioPlay        | mpc toggle                            | Plays / pauses on mpc        |
+| XF86AudioNext        | mpc next                              | Next track on mpc            |
+| XF86AudioPrev        | mpc prev                              | Previous track on mpc        |
+| Mod4+x          | ~/.emacs.d/bin/org-capture            | Org-capture                  |
+| Mod4+p          | i3-lock-fancy                      | Starts the lockscreen        |
+
+#+NAME: shortcuts-table-generator
+#+BEGIN_SRC emacs-lisp :var table=shortcuts-table :results output :exports results
+(dolist (row table)
+  (princ (format "bindsym %s exec --no-startup-id %s # %s\n" (nth 0 row) (nth 1 row) (nth 2 row))))
+#+END_SRC
+
+** Autostart Commands
+
+#+NAME: autostart-table
+| Command                                                     | Runs Always | Startup ID | Description                 |
+|-------------------------------------------------------------+-------------+------------+-----------------------------|
+| xinput set-prop 'DELL0829:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1 | nil         | nil        | Enables tapping             |
+| setxkbmap -option caps:swapescape                           | nil         | nil        | Swaps caps lock with escape |
+| compton --config ~/.config/i3/compton.conf -b               | nil         | nil        | Starts compton              |
+| dunst                                                       | nil         | nil        | Notification manager        |
+| xset +fp ~/.fonts                                           | nil         | nil        | Loads fonts                 |
+| xset fp rehash                                              | nil         | nil        |                             |
+| feh --bg-max --randomize ~/Wallpapers/pictures/* &                | t           | nil        | Loads a random wallpaper    |
+| ~/.dotfiles/xrandr/apply.sh ~/.dotfiles/xrandr/layouts/             | t           | t          | Loads xrandr layouts        |
+| flameshot                                                   | nil         | nil        | Screenshot tool             |
+| nm-applet                                                   | nil         | nil        | Network Manager applet      |
+| tint2                                                       | nil         | nil        | Application bar             |
+
+#+NAME: autostart-table-generator
+#+BEGIN_SRC emacs-lisp :var table=autostart-table :results output :exports results
+(dolist (row table)
+  (princ (format "exec%s%s %s # %s\n"
+                 (if (string= "t" (nth 1 row)) "_always" "")
+                 (if (string= "nil" (nth 2 row)) " --no-startup-id" "")
+                 (nth 0 row)
+                 (nth 3 row))))
+#+END_SRC
+** Extra
+
+This is stuff that doesn't translate very well into literate programming :(
+
+#+NAME: extra
+#+BEGIN_SRC text
+#Resize mode
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+#+END_SRC
+
+** Output
+
+#+BEGIN_SRC text :noweb yes :tangle test.config
+# Keybinds
+## Navigation
+<<navigation-table-generator()>>
+
+## Workspaces
+<<workspaces-table-generator()>>
+
+## Shortcuts
+<<shortcuts-table-generator()>>
+
+# Autostart
+<<autostart-table-generator()>>
+
+# Extra
+<<extra>>
+#+END_SRC
