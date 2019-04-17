@@ -15,7 +15,7 @@ Hi. Welcome to my dotfiles.
 #+MACRO: mod Mod4
 #+MACRO: lockscreen i3-lock-fancy
 #+MACRO: xrandrLayouts ~/.dotfiles/xrandr/layouts/
-#+MACRO: wallpapers ~/Wallpapers/pictures/
+#+MACRO: wallpapers ~/Pictures/Wallpapers
 #+MACRO: touchpad 'DELL0829:00 06CB:7E92 Touchpad'
 #+MACRO: scriptsDir ~/.dotfiles/scripts
 
@@ -32,7 +32,7 @@ Hi. Welcome to my dotfiles.
 | Configuration     | Value                    | Description                                  |
 |-------------------+--------------------------+----------------------------------------------|
 | font              | pango:DejaVu Sans Mono 8 | Sets font                                    |
-| floating_modifier | Mod4                | Use Mouse+Mod4 to drag floating windows |
+| floating_modifier | {{{mod}}}                | Use Mouse+{{{mod}}} to drag floating windows |
 | new_window        | 1pixel                   |                                              |
 | gaps              | inner 10                 | Sets gap size (i3-gaps only)                 |
 
@@ -48,29 +48,29 @@ Hi. Welcome to my dotfiles.
 #+NAME: navigation-table
 | Keybind               | Command                                        | Action                                           |
 |-----------------------+------------------------------------------------+--------------------------------------------------|
-| Mod4+Return      | i3-sensible-terminal                           | Opens a new terminal                             |
-| Mod4+Shift+q     | kill                                           | Kills the focused window                         |
-| Mod4+d           | "rofi -combi-modi window,drun,ssh -show combi" | Runs rofi in combined mode                       |
-| Mod4+h           | focus left                                     |                                                  |
-| Mod4+j           | focus down                                     |                                                  |
-| Mod4+k           | focus up                                       |                                                  |
-| Mod4+l           | focus right                                    |                                                  |
-| Mod4+Shift+h     | move left                                      |                                                  |
-| Mod4+Shift+j     | move down                                      |                                                  |
-| Mod4+Shift+k     | move up                                        |                                                  |
-| Mod4+Shift+l     | move right                                     |                                                  |
-| Mod4+b           | split h                                        | Splits horizontally                              |
-| Mod4+v           | split v                                        | Splits vertically                                |
-| Mod4+f           | fullscreen toggle                              | Toggles fullscreen mode for the focused window   |
-| Mod4+s           | layout stacking                                | Sets layout to stacking                          |
-| Mod4+w           | layout tabbed                                  | Sets layout to tabbed                            |
-| Mod4+e           | layout toggle split                            | Toggles layout to split                          |
-| Mod4+Shift+space | floating toggle                                | Toggles floating for the current window          |
-| Mod4+space       | focus mode_toggle                              | Change focus between tiling and floating windows |
-| Mod4+a           | focus parent                                   | Focuses the parent window                        |
-| Mod4+Shift+c     | reload                                         | Reloads the configuration file                   |
-| Mod4+Shift+r     | restart                                        | Restarts i3 in place                             |
-| Mod4+r           | mode "resize"                                  | Toggles resize mode                              |
+| {{{mod}}}+Return      | i3-sensible-terminal                           | Opens a new terminal                             |
+| {{{mod}}}+Shift+q     | kill                                           | Kills the focused window                         |
+| {{{mod}}}+d           | "rofi -combi-modi window,drun,ssh -show combi" | Runs rofi in combined mode                       |
+| {{{mod}}}+h           | focus left                                     |                                                  |
+| {{{mod}}}+j           | focus down                                     |                                                  |
+| {{{mod}}}+k           | focus up                                       |                                                  |
+| {{{mod}}}+l           | focus right                                    |                                                  |
+| {{{mod}}}+Shift+h     | move left                                      |                                                  |
+| {{{mod}}}+Shift+j     | move down                                      |                                                  |
+| {{{mod}}}+Shift+k     | move up                                        |                                                  |
+| {{{mod}}}+Shift+l     | move right                                     |                                                  |
+| {{{mod}}}+b           | split h                                        | Splits horizontally                              |
+| {{{mod}}}+v           | split v                                        | Splits vertically                                |
+| {{{mod}}}+f           | fullscreen toggle                              | Toggles fullscreen mode for the focused window   |
+| {{{mod}}}+s           | layout stacking                                | Sets layout to stacking                          |
+| {{{mod}}}+w           | layout tabbed                                  | Sets layout to tabbed                            |
+| {{{mod}}}+e           | layout toggle split                            | Toggles layout to split                          |
+| {{{mod}}}+Shift+space | floating toggle                                | Toggles floating for the current window          |
+| {{{mod}}}+space       | focus mode_toggle                              | Change focus between tiling and floating windows |
+| {{{mod}}}+a           | focus parent                                   | Focuses the parent window                        |
+| {{{mod}}}+Shift+c     | reload                                         | Reloads the configuration file                   |
+| {{{mod}}}+Shift+r     | restart                                        | Restarts i3 in place                             |
+| {{{mod}}}+r           | mode "resize"                                  | Toggles resize mode                              |
 
 #+NAME: navigation-table-generator
 #+BEGIN_SRC emacs-lisp :var table=navigation-table :results output :exports results
@@ -80,9 +80,9 @@ Hi. Welcome to my dotfiles.
 
 *** Workspaces
 #+NAME: workspaces-table
-| Keybind    | Command       | Action                |
-|------------+---------------+-----------------------|
-| Mod4+ | workspace     | Switches to workspace |
+| Keybind    | Command   | Action                |
+|------------+-----------+-----------------------|
+| {{{mod}}}+ | workspace | Switches to workspace |
 
 #+NAME: workspaces-table-generator
 #+BEGIN_SRC emacs-lisp :var table=workspaces-table :results output :exports results
@@ -103,8 +103,8 @@ Hi. Welcome to my dotfiles.
 | XF86AudioPlay        | mpc toggle                            | Plays / pauses on mpc        |
 | XF86AudioNext        | mpc next                              | Next track on mpc            |
 | XF86AudioPrev        | mpc prev                              | Previous track on mpc        |
-| Mod4+x          | ~/.emacs.d/bin/org-capture            | Org-capture                  |
-| Mod4+p          | i3-lock-fancy                      | Starts the lockscreen        |
+| {{{mod}}}+x          | ~/.emacs.d/bin/org-capture            | Org-capture                  |
+| {{{mod}}}+p          | {{{lockscreen}}}                      | Starts the lockscreen        |
 
 #+NAME: shortcuts-table-generator
 #+BEGIN_SRC emacs-lisp :var table=shortcuts-table :results output :exports results
@@ -117,14 +117,14 @@ Hi. Welcome to my dotfiles.
 #+NAME: autostart-table
 | Command                                                     | Runs Always | Startup ID | Description                 |
 |-------------------------------------------------------------+-------------+------------+-----------------------------|
-| xinput set-prop 'DELL0829:00 06CB:7E92 Touchpad' 'libinput Tapping Enabled' 1 | nil         | nil        | Enables tapping             |
+| xinput set-prop {{{touchpad}}} 'libinput Tapping Enabled' 1 | nil         | nil        | Enables tapping             |
 | setxkbmap -option caps:swapescape                           | nil         | nil        | Swaps caps lock with escape |
 | compton --config ~/.config/i3/compton.conf -b               | nil         | nil        | Starts compton              |
 | dunst                                                       | nil         | nil        | Notification manager        |
 | xset +fp ~/.fonts                                           | nil         | nil        | Loads fonts                 |
 | xset fp rehash                                              | nil         | nil        |                             |
-| feh --bg-max --randomize ~/Wallpapers/pictures/* &                | t           | nil        | Loads a random wallpaper    |
-| ~/.dotfiles/xrandr/apply.sh ~/.dotfiles/xrandr/layouts/             | t           | t          | Loads xrandr layouts        |
+| feh --bg-max --randomize {{{wallpapers}}}* &                | t           | nil        | Loads a random wallpaper    |
+| ~/.dotfiles/xrandr/apply.sh {{{xrandrLayouts}}}             | t           | t          | Loads xrandr layouts        |
 | flameshot                                                   | nil         | nil        | Screenshot tool             |
 | nm-applet                                                   | nil         | nil        | Network Manager applet      |
 | tint2                                                       | nil         | nil        | Application bar             |
