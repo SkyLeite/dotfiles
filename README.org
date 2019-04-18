@@ -172,6 +172,9 @@ mode "resize" {
 ** Output
 
 #+BEGIN_SRC text :noweb yes :tangle test.config
+# Config
+<<config-table-generator()>>
+
 # Keybinds
 ## Navigation
 <<navigation-table-generator()>>
