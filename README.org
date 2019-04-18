@@ -2,21 +2,6 @@
 
 Hi. Welcome to my dotfiles.
 
-# This is used to resolve macros when tangling
-#+BEGIN_SRC emacs-lisp :exports none
-(add-hook 'org-babel-pre-tangle-hook
-          (lambda () (org-macro-replace-all (org-macro--collect-macros))))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp :exports none
-(defun org-tangle-without-saving ()
-  (interactive)
-  (cl-letf (((symbol-function 'save-buffer) #'ignore))
-    (org-babel-tangle)
-  )
-  (undo-tree-undo))
-#+END_SRC
-
 * i3
 
 ** Constants
@@ -197,4 +182,22 @@ mode "resize" {
 
 # Extra
 <<extra>>
+#+END_SRC
+
+* Utility
+
+** Hook to resolve macros when tangling
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-babel-pre-tangle-hook
+          (lambda () (org-macro-replace-all (org-macro--collect-macros))))
+#+END_SRC
+
+** Interactive function to tangle without changing the source file
+#+BEGIN_SRC emacs-lisp
+(defun org-tangle-without-saving ()
+  (interactive)
+  (cl-letf (((symbol-function 'save-buffer) #'ignore))
+    (org-babel-tangle)
+  )
+  (undo-tree-undo))
 #+END_SRC
