@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-04-18 Thu 16:23 -->
+<!-- 2019-04-18 Thu 17:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dotfiles</title>
@@ -247,37 +247,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf96d5d4">1. Compiling</a>
+<li><a href="#orgfd510b1">1. Dependencies</a></li>
+<li><a href="#org0176fd5">2. i3</a>
 <ul>
-<li><a href="#orga665d6f">1.1. From the command line</a></li>
+<li><a href="#org207edbd">2.1. Constants</a></li>
+<li><a href="#orge60cb53">2.2. Config</a></li>
+<li><a href="#org4823589">2.3. Keybinds</a>
+<ul>
+<li><a href="#orge6fdd5d">2.3.1. Navigation and i3 stuff</a></li>
+<li><a href="#org64f5753">2.3.2. Workspaces</a></li>
+<li><a href="#org83e08c8">2.3.3. Shortcuts</a></li>
 </ul>
 </li>
-<li><a href="#org2438420">2. Dependencies</a></li>
-<li><a href="#org38cea21">3. i3</a>
-<ul>
-<li><a href="#orgde92617">3.1. Constants</a></li>
-<li><a href="#orge662f39">3.2. Config</a></li>
-<li><a href="#org80fb775">3.3. Keybinds</a>
-<ul>
-<li><a href="#org0d7cc44">3.3.1. Navigation and i3 stuff</a></li>
-<li><a href="#org2e33687">3.3.2. Workspaces</a></li>
-<li><a href="#org6abcc91">3.3.3. Shortcuts</a></li>
+<li><a href="#org0ec9ad8">2.4. Autostart Commands</a></li>
+<li><a href="#org644e221">2.5. Window Settings</a></li>
+<li><a href="#orgc020cfa">2.6. Extra</a></li>
+<li><a href="#org53e8aaa">2.7. Output</a></li>
 </ul>
 </li>
-<li><a href="#org3a0a743">3.4. Autostart Commands</a></li>
-<li><a href="#org1fa361a">3.5. Window Settings</a></li>
-<li><a href="#orgb8be99b">3.6. Extra</a></li>
-<li><a href="#org5c274ef">3.7. Output</a></li>
-</ul>
-</li>
-<li><a href="#org4dd867e">4. Emacs</a>
+<li><a href="#org90c3f4c">3. Emacs</a>
 <ul>
-<li><a href="#orgc7208ae">4.1. Custom Bindings</a></li>
-<li><a href="#org27bc33b">4.2. Configuration Variables</a>
+<li><a href="#org92c5675">3.1. Custom Bindings</a></li>
+<li><a href="#org168aa5b">3.2. Configuration Variables</a>
 <ul>
-<li><a href="#org9c54f46">4.2.1. Typescript / Javascript</a></li>
-<li><a href="#org16a635a">4.2.2. Company-Complete</a></li>
-<li><a href="#org338bef5">4.2.3. Org Mode</a></li>
+<li><a href="#org88b9807">3.2.1. Typescript / Javascript</a></li>
+<li><a href="#orgd94fafd">3.2.2. Company-Complete</a></li>
+<li><a href="#orgba036ba">3.2.3. Org Mode</a></li>
 </ul>
 </li>
 </ul>
@@ -295,24 +290,9 @@ files automatically. This is done using org mode as a templating engine,
 compiled through simple elisp code and org-tangle.
 </p>
 
-<div id="outline-container-orgf96d5d4" class="outline-2">
-<h2 id="orgf96d5d4"><span class="section-number-2">1</span> Compiling</h2>
+<div id="outline-container-orgfd510b1" class="outline-2">
+<h2 id="orgfd510b1"><span class="section-number-2">1</span> Dependencies</h2>
 <div class="outline-text-2" id="text-1">
-</div>
-<div id="outline-container-orga665d6f" class="outline-3">
-<h3 id="orga665d6f"><span class="section-number-3">1.1</span> From the command line</h3>
-<div class="outline-text-3" id="text-1-1">
-<div class="org-src-container">
-<pre class="src src-bash">yes yes | emacs -u <span style="color: #98be65;">"</span><span style="color: #51afef; font-weight: bold;">$(</span><span style="color: #51afef; font-weight: bold;">id</span><span style="color: #51afef; font-weight: bold;"> -un)</span><span style="color: #98be65;">"</span> --batch --eval <span style="color: #98be65;">'(load user-init-file)'</span> -l org README.org -f org-babel-tangle
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org2438420" class="outline-2">
-<h2 id="org2438420"><span class="section-number-2">2</span> Dependencies</h2>
-<div class="outline-text-2" id="text-2">
 <p>
 These should hopefully be auto-installed with a script in the future. In the
 meantime, they're listed here for convenience.
@@ -334,13 +314,13 @@ meantime, they're listed here for convenience.
 </div>
 </div>
 
-<div id="outline-container-org38cea21" class="outline-2">
-<h2 id="org38cea21"><span class="section-number-2">3</span> i3</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org0176fd5" class="outline-2">
+<h2 id="org0176fd5"><span class="section-number-2">2</span> i3</h2>
+<div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgde92617" class="outline-3">
-<h3 id="orgde92617"><span class="section-number-3">3.1</span> Constants</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org207edbd" class="outline-3">
+<h3 id="org207edbd"><span class="section-number-3">2.1</span> Constants</h3>
+<div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Mod key: Mod4</li>
 <li>Locksceren command: i3-lock-fancy</li>
@@ -352,10 +332,10 @@ meantime, they're listed here for convenience.
 </div>
 </div>
 
-<div id="outline-container-orge662f39" class="outline-3">
-<h3 id="orge662f39"><span class="section-number-3">3.2</span> Config</h3>
-<div class="outline-text-3" id="text-3-2">
-<table id="org6438726" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-orge60cb53" class="outline-3">
+<h3 id="orge60cb53"><span class="section-number-3">2.2</span> Config</h3>
+<div class="outline-text-3" id="text-2-2">
+<table id="org7772111" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -408,14 +388,14 @@ gaps inner 10
 </div>
 </div>
 
-<div id="outline-container-org80fb775" class="outline-3">
-<h3 id="org80fb775"><span class="section-number-3">3.3</span> Keybinds</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org4823589" class="outline-3">
+<h3 id="org4823589"><span class="section-number-3">2.3</span> Keybinds</h3>
+<div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org0d7cc44" class="outline-4">
-<h4 id="org0d7cc44"><span class="section-number-4">3.3.1</span> Navigation and i3 stuff</h4>
-<div class="outline-text-4" id="text-3-3-1">
-<table id="orgdca16dd" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-orge6fdd5d" class="outline-4">
+<h4 id="orge6fdd5d"><span class="section-number-4">2.3.1</span> Navigation and i3 stuff</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<table id="org54a2a9b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -627,10 +607,10 @@ bindsym Mod4+r mode "resize"
 </div>
 </div>
 
-<div id="outline-container-org2e33687" class="outline-4">
-<h4 id="org2e33687"><span class="section-number-4">3.3.2</span> Workspaces</h4>
-<div class="outline-text-4" id="text-3-3-2">
-<table id="org6ae8c4f" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org64f5753" class="outline-4">
+<h4 id="org64f5753"><span class="section-number-4">2.3.2</span> Workspaces</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<table id="org7f34369" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -671,10 +651,10 @@ bindsym Mod4+10 workspace 10
 </div>
 </div>
 
-<div id="outline-container-org6abcc91" class="outline-4">
-<h4 id="org6abcc91"><span class="section-number-4">3.3.3</span> Shortcuts</h4>
-<div class="outline-text-4" id="text-3-3-3">
-<table id="orge507d5b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org83e08c8" class="outline-4">
+<h4 id="org83e08c8"><span class="section-number-4">2.3.3</span> Shortcuts</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<table id="org74e36f2" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -770,10 +750,10 @@ bindsym Mod4+t exec --no-startup-id ~/.dotfiles/scripts/rofi-twitch
 </div>
 </div>
 
-<div id="outline-container-org3a0a743" class="outline-3">
-<h3 id="org3a0a743"><span class="section-number-3">3.4</span> Autostart Commands</h3>
-<div class="outline-text-3" id="text-3-4">
-<table id="orgb377b99" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org0ec9ad8" class="outline-3">
+<h3 id="org0ec9ad8"><span class="section-number-3">2.4</span> Autostart Commands</h3>
+<div class="outline-text-3" id="text-2-4">
+<table id="org9d8be68" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -889,10 +869,10 @@ exec --no-startup-id tint2
 </div>
 </div>
 
-<div id="outline-container-org1fa361a" class="outline-3">
-<h3 id="org1fa361a"><span class="section-number-3">3.5</span> Window Settings</h3>
-<div class="outline-text-3" id="text-3-5">
-<table id="org3d46158" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-org644e221" class="outline-3">
+<h3 id="org644e221"><span class="section-number-3">2.5</span> Window Settings</h3>
+<div class="outline-text-3" id="text-2-5">
+<table id="orgf26ee9a" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -926,15 +906,15 @@ for_window [instance="^twitchPopup$"] floating enable
 </div>
 </div>
 
-<div id="outline-container-orgb8be99b" class="outline-3">
-<h3 id="orgb8be99b"><span class="section-number-3">3.6</span> Extra</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-orgc020cfa" class="outline-3">
+<h3 id="orgc020cfa"><span class="section-number-3">2.6</span> Extra</h3>
+<div class="outline-text-3" id="text-2-6">
 <p>
 This is stuff that doesn't translate very well into literate programming :(
 </p>
 
 <div class="org-src-container">
-<pre class="src src-text" id="orgeff7b4d">#Resize mode
+<pre class="src src-text" id="org139f689">#Resize mode
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -963,9 +943,9 @@ mode "resize" {
 </div>
 </div>
 
-<div id="outline-container-org5c274ef" class="outline-3">
-<h3 id="org5c274ef"><span class="section-number-3">3.7</span> Output</h3>
-<div class="outline-text-3" id="text-3-7">
+<div id="outline-container-org53e8aaa" class="outline-3">
+<h3 id="org53e8aaa"><span class="section-number-3">2.7</span> Output</h3>
+<div class="outline-text-3" id="text-2-7">
 <div class="org-src-container">
 <pre class="src src-text"># Config
 font pango:DejaVu Sans Mono 8
@@ -1077,17 +1057,18 @@ mode "resize" {
 </div>
 </div>
 
-<div id="outline-container-org4dd867e" class="outline-2">
-<h2 id="org4dd867e"><span class="section-number-2">4</span> Emacs</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org90c3f4c" class="outline-2">
+<h2 id="org90c3f4c"><span class="section-number-2">3</span> Emacs</h2>
+<div class="outline-text-2" id="text-3">
 <p>
-Oh boy.
+Some of this stuff might be specific to <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>, like the <code>(!after)</code> macro.
+Feel free to adapt things to your needs if you use a different distribution of Emacs.
 </p>
 </div>
 
-<div id="outline-container-orgc7208ae" class="outline-3">
-<h3 id="orgc7208ae"><span class="section-number-3">4.1</span> Custom Bindings</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org92c5675" class="outline-3">
+<h3 id="org92c5675"><span class="section-number-3">3.1</span> Custom Bindings</h3>
+<div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Custom bindings</span>
 <span style="color: #51afef;">(</span><span style="color: #51afef;">map!</span> <span style="color: #c678dd;">:leader</span>
@@ -1100,17 +1081,17 @@ Oh boy.
 </div>
 </div>
 
-<div id="outline-container-org27bc33b" class="outline-3">
-<h3 id="org27bc33b"><span class="section-number-3">4.2</span> Configuration Variables</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-org168aa5b" class="outline-3">
+<h3 id="org168aa5b"><span class="section-number-3">3.2</span> Configuration Variables</h3>
+<div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org9c54f46" class="outline-4">
-<h4 id="org9c54f46"><span class="section-number-4">4.2.1</span> Typescript / Javascript</h4>
-<div class="outline-text-4" id="text-4-2-1">
+<div id="outline-container-org88b9807" class="outline-4">
+<h4 id="org88b9807"><span class="section-number-4">3.2.1</span> Typescript / Javascript</h4>
+<div class="outline-text-4" id="text-3-2-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgc0797e8"></a>Enable TSX files to be parsed with web-mode<br />
-<div class="outline-text-5" id="text-4-2-1-1">
+<li><a id="org584f510"></a>Enable TSX files to be parsed with web-mode<br />
+<div class="outline-text-5" id="text-3-2-1-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">after!</span> web-mode
 <span style="color: #c678dd;">(</span><span style="color: #51afef;">after!</span> tide
@@ -1127,8 +1108,8 @@ Oh boy.
 </div>
 </li>
 
-<li><a id="orgba08a66"></a>Set node-js executable path<br />
-<div class="outline-text-5" id="text-4-2-1-2">
+<li><a id="orgae61961"></a>Set node-js executable path<br />
+<div class="outline-text-5" id="text-3-2-1-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Node executable path</span>
 <span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">exec-path</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">append</span> <span style="color: #dcaeea;">exec-path</span> <span style="color: #51afef;">'</span><span style="color: #98be65;">(</span><span style="color: #98be65;">"~/.nvm/versions/node/v10.15.3/bin"</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
@@ -1139,9 +1120,9 @@ Oh boy.
 </ol>
 </div>
 
-<div id="outline-container-org16a635a" class="outline-4">
-<h4 id="org16a635a"><span class="section-number-4">4.2.2</span> Company-Complete</h4>
-<div class="outline-text-4" id="text-4-2-2">
+<div id="outline-container-orgd94fafd" class="outline-4">
+<h4 id="orgd94fafd"><span class="section-number-4">3.2.2</span> Company-Complete</h4>
+<div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">after!</span> company
   <span style="color: #c678dd;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">company-idle-delay</span> <span style="color: #da8548; font-weight: bold;">0.2</span>
@@ -1151,13 +1132,13 @@ Oh boy.
 </div>
 </div>
 
-<div id="outline-container-org338bef5" class="outline-4">
-<h4 id="org338bef5"><span class="section-number-4">4.2.3</span> Org Mode</h4>
-<div class="outline-text-4" id="text-4-2-3">
+<div id="outline-container-orgba036ba" class="outline-4">
+<h4 id="orgba036ba"><span class="section-number-4">3.2.3</span> Org Mode</h4>
+<div class="outline-text-4" id="text-3-2-3">
 </div>
 <ol class="org-ol">
-<li><a id="org4fb6fca"></a>Org Publish<br />
-<div class="outline-text-5" id="text-4-2-3-1">
+<li><a id="orgb35bd4b"></a>Org Publish<br />
+<div class="outline-text-5" id="text-3-2-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #a9a1e1;">require</span> <span style="color: #51afef;">'</span><span style="color: #a9a1e1;">ox-publish</span><span style="color: #51afef;">)</span>
 <span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">org-publish-project-alist</span>
@@ -1187,8 +1168,8 @@ Oh boy.
 </div>
 </li>
 
-<li><a id="orgff73a91"></a>Org Capture Templates<br />
-<div class="outline-text-5" id="text-4-2-3-2">
+<li><a id="orgda08185"></a>Org Capture Templates<br />
+<div class="outline-text-5" id="text-3-2-3-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Org capture templates</span>
 <span style="color: #51afef;">(</span><span style="color: #51afef;">after!</span> org-capture
@@ -1201,10 +1182,10 @@ Oh boy.
 </div>
 </li>
 
-<li><a id="orgca95e42"></a>Org Babel<br />
+<li><a id="org1f63fd3"></a>Org Babel<br />
 <ol class="org-ol">
-<li><a id="orgf864d09"></a>Hook to resolve macros when tangling<br />
-<div class="outline-text-6" id="text-4-2-3-3-1">
+<li><a id="org76ea8d8"></a>Hook to resolve macros when tangling<br />
+<div class="outline-text-6" id="text-3-2-3-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #c678dd;">add-hook</span> <span style="color: #51afef;">'</span><span style="color: #dcaeea;">org-babel-pre-tangle-hook</span>
           <span style="color: #c678dd;">(</span><span style="color: #51afef;">lambda</span> <span style="color: #98be65;">()</span> <span style="color: #98be65;">(</span><span style="color: #c678dd;">org-macro-replace-all</span> <span style="color: #51afef;">(</span><span style="color: #c678dd;">org-macro--collect-macros</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
@@ -1213,8 +1194,8 @@ Oh boy.
 </div>
 </li>
 
-<li><a id="org9904d1e"></a>Interactive function to tangle without changing the source file<br />
-<div class="outline-text-6" id="text-4-2-3-3-2">
+<li><a id="orgfecd474"></a>Interactive function to tangle without changing the source file<br />
+<div class="outline-text-6" id="text-3-2-3-3-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">defun</span> <span style="color: #c678dd;">org-tangle-without-saving</span> <span style="color: #c678dd;">()</span>
   <span style="color: #c678dd;">(</span><span style="color: #51afef;">interactive</span><span style="color: #c678dd;">)</span>
@@ -1236,7 +1217,7 @@ Oh boy.
 <div id="postamble" class="status">
 <p class="date">Date: 2019-04-13 Sat 00:00</p>
 <p class="author">Author: Rodrigo Leite</p>
-<p class="date">Created: 2019-04-18 Thu 16:23</p>
+<p class="date">Created: 2019-04-18 Thu 17:12</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

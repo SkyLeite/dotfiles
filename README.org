@@ -243,7 +243,8 @@ mode "resize" {
 :header-args: :tangle config/doom.d/config.el
 :END:
 
-Oh boy.
+Some of this stuff might be specific to [[https://github.com/hlissner/doom-emacs][Doom Emacs]], like the =(!after)= macro.
+Feel free to adapt things to your needs if you use a different distribution of Emacs.
 
 ** Custom Bindings
 
