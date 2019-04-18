@@ -4,3 +4,4 @@
 * DONE Add i3 configs to final output
 * DONE Fix quoted commands
 * DONE Add :results none to utility functions
+* DONE Add support for window specific settings

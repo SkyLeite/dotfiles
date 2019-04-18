@@ -137,6 +137,19 @@ Hi. Welcome to my dotfiles.
                  (nth 0 row)
                  )))
 #+END_SRC
+** Window Settings
+
+#+NAME: window-table
+| Query                      | Setting         |
+|----------------------------+-----------------|
+| [instance="^org-capture$"] | floating enable |
+
+#+NAME: window-table-generator
+#+BEGIN_SRC emacs-lisp :var table=window-table :results output :exports results
+(dolist (row table)
+  (princ (format "for_window %s %s\n" (nth 0 row) (nth 1 row))))
+#+END_SRC
+
 ** Extra
 
 This is stuff that doesn't translate very well into literate programming :(
@@ -187,6 +200,9 @@ mode "resize" {
 
 # Autostart
 <<autostart-table-generator()>>
+
+# Window settings
+<<window-table-generator()>>
 
 # Extra
 <<extra>>
