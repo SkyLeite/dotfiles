@@ -103,17 +103,18 @@ compiled through simple elisp code and org-tangle.
 
 *** Shortcuts
 #+NAME: shortcuts-table
-| Keybind              | Command                               | Action                       |
-|----------------------+---------------------------------------+------------------------------|
-| Print                | flameshot gui                         | Starts flameshot in gui mode |
-| XF86AudioMute        | amixer -q -D pulse sset Master toggle | Toggles mute                 |
-| XF86AudioLowerVolume | pactl set-sink-volume 0 -5%           | Lowers volume by 5%          |
-| XF86AudioRaiseVolume | pactl set-sink-volume 0 +5%           | Raises volume by 5%          |
-| XF86AudioPlay        | mpc toggle                            | Plays / pauses on mpc        |
-| XF86AudioNext        | mpc next                              | Next track on mpc            |
-| XF86AudioPrev        | mpc prev                              | Previous track on mpc        |
-| {{{mod}}}+x          | ~/.emacs.d/bin/org-capture            | Org-capture                  |
-| {{{mod}}}+p          | {{{lockscreen}}}                      | Starts the lockscreen        |
+| Keybind              | Command                               | Action                               |
+|----------------------+---------------------------------------+--------------------------------------|
+| Print                | flameshot gui                         | Starts flameshot in gui mode         |
+| XF86AudioMute        | amixer -q -D pulse sset Master toggle | Toggles mute                         |
+| XF86AudioLowerVolume | pactl set-sink-volume 0 -5%           | Lowers volume by 5%                  |
+| XF86AudioRaiseVolume | pactl set-sink-volume 0 +5%           | Raises volume by 5%                  |
+| XF86AudioPlay        | mpc toggle                            | Plays / pauses on mpc                |
+| XF86AudioNext        | mpc next                              | Next track on mpc                    |
+| XF86AudioPrev        | mpc prev                              | Previous track on mpc                |
+| {{{mod}}}+x          | ~/.emacs.d/bin/org-capture            | Org-capture                          |
+| {{{mod}}}+p          | {{{lockscreen}}}                      | Starts the lockscreen                |
+| {{{mod}}}+t          | {{{scriptsDir}}}/rofi-twitch          | Runs rofi as a Twitch channel picker |
 
 #+NAME: shortcuts-table-generator
 #+BEGIN_SRC emacs-lisp :var table=shortcuts-table :results output :exports results
@@ -153,6 +154,7 @@ compiled through simple elisp code and org-tangle.
 | Query                      | Setting         |
 |----------------------------+-----------------|
 | [instance="^org-capture$"] | floating enable |
+| [instance="^twitchPopup$"] | floating enable |
 
 #+NAME: window-table-generator
 #+BEGIN_SRC emacs-lisp :var table=window-table :results output :exports results

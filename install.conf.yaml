@@ -45,3 +45,7 @@
         path: config/tint2/tint2rc
         create: true
         force: true
+    ~/.config/rofi-twitch/settings:
+        path: config/rofi-twitch/settings
+        create: true
+        force: true

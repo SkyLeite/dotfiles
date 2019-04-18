@@ -55,6 +55,7 @@ bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym Mod4+x exec --no-startup-id ~/.emacs.d/bin/org-capture
 bindsym Mod4+p exec --no-startup-id i3-lock-fancy
+bindsym Mod4+t exec --no-startup-id ~/.dotfiles/scripts/rofi-twitch
 
 
 # Autostart
@@ -73,6 +74,7 @@ exec --no-startup-id tint2
 
 # Window settings
 for_window [instance="^org-capture$"] floating enable
+for_window [instance="^twitchPopup$"] floating enable
 
 
 # Extra
