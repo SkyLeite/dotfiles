@@ -40,31 +40,31 @@ Hi. Welcome to my dotfiles.
 
 *** Navigation and i3 stuff
 #+NAME: navigation-table
-| Keybind               | Command                                        | Is Exec | Action                                           |
-|-----------------------+------------------------------------------------+---------+--------------------------------------------------|
-| {{{mod}}}+Return      | i3-sensible-terminal                           | nil     | Opens a new terminal                             |
-| {{{mod}}}+Shift+q     | kill                                           | nil     | Kills the focused window                         |
-| {{{mod}}}+d           | rofi -combi-modi window,drun,ssh -show combi   | t       | Runs rofi in combined mode                       |
-| {{{mod}}}+h           | focus left                                     | nil     |                                                  |
-| {{{mod}}}+j           | focus down                                     | nil     |                                                  |
-| {{{mod}}}+k           | focus up                                       | nil     |                                                  |
-| {{{mod}}}+l           | focus right                                    | nil     |                                                  |
-| {{{mod}}}+Shift+h     | move left                                      | nil     |                                                  |
-| {{{mod}}}+Shift+j     | move down                                      | nil     |                                                  |
-| {{{mod}}}+Shift+k     | move up                                        | nil     |                                                  |
-| {{{mod}}}+Shift+l     | move right                                     | nil     |                                                  |
-| {{{mod}}}+b           | split h                                        | nil     | Splits horizontally                              |
-| {{{mod}}}+v           | split v                                        | nil     | Splits vertically                                |
-| {{{mod}}}+f           | fullscreen toggle                              | nil     | Toggles fullscreen mode for the focused window   |
-| {{{mod}}}+s           | layout stacking                                | nil     | Sets layout to stacking                          |
-| {{{mod}}}+w           | layout tabbed                                  | nil     | Sets layout to tabbed                            |
-| {{{mod}}}+e           | layout toggle split                            | nil     | Toggles layout to split                          |
-| {{{mod}}}+Shift+space | floating toggle                                | nil     | Toggles floating for the current window          |
-| {{{mod}}}+space       | focus mode_toggle                              | nil     | Change focus between tiling and floating windows |
-| {{{mod}}}+a           | focus parent                                   | nil     | Focuses the parent window                        |
-| {{{mod}}}+Shift+c     | reload                                         | nil     | Reloads the configuration file                   |
-| {{{mod}}}+Shift+r     | restart                                        | nil     | Restarts i3 in place                             |
-| {{{mod}}}+r           | mode "resize"                                  | nil     | Toggles resize mode                              |
+| Keybind               | Command                                      | Is Exec | Action                                           |
+|-----------------------+----------------------------------------------+---------+--------------------------------------------------|
+| {{{mod}}}+Return      | i3-sensible-terminal                         | t       | Opens a new terminal                             |
+| {{{mod}}}+Shift+q     | kill                                         | nil     | Kills the focused window                         |
+| {{{mod}}}+d           | rofi -combi-modi window,drun,ssh -show combi | t       | Runs rofi in combined mode                       |
+| {{{mod}}}+h           | focus left                                   | nil     |                                                  |
+| {{{mod}}}+j           | focus down                                   | nil     |                                                  |
+| {{{mod}}}+k           | focus up                                     | nil     |                                                  |
+| {{{mod}}}+l           | focus right                                  | nil     |                                                  |
+| {{{mod}}}+Shift+h     | move left                                    | nil     |                                                  |
+| {{{mod}}}+Shift+j     | move down                                    | nil     |                                                  |
+| {{{mod}}}+Shift+k     | move up                                      | nil     |                                                  |
+| {{{mod}}}+Shift+l     | move right                                   | nil     |                                                  |
+| {{{mod}}}+b           | split h                                      | nil     | Splits horizontally                              |
+| {{{mod}}}+v           | split v                                      | nil     | Splits vertically                                |
+| {{{mod}}}+f           | fullscreen toggle                            | nil     | Toggles fullscreen mode for the focused window   |
+| {{{mod}}}+s           | layout stacking                              | nil     | Sets layout to stacking                          |
+| {{{mod}}}+w           | layout tabbed                                | nil     | Sets layout to tabbed                            |
+| {{{mod}}}+e           | layout toggle split                          | nil     | Toggles layout to split                          |
+| {{{mod}}}+Shift+space | floating toggle                              | nil     | Toggles floating for the current window          |
+| {{{mod}}}+space       | focus mode_toggle                            | nil     | Change focus between tiling and floating windows |
+| {{{mod}}}+a           | focus parent                                 | nil     | Focuses the parent window                        |
+| {{{mod}}}+Shift+c     | reload                                       | nil     | Reloads the configuration file                   |
+| {{{mod}}}+Shift+r     | restart                                      | nil     | Restarts i3 in place                             |
+| {{{mod}}}+r           | mode "resize"                                | nil     | Toggles resize mode                              |
 
 #+NAME: navigation-table-generator
 #+BEGIN_SRC emacs-lisp :var table=navigation-table :results output :exports results
