@@ -12,6 +12,23 @@ The purpose of this README is to generate most (if not all) of my configuration
 files automatically. This is done using org mode as a templating engine,
 compiled through simple elisp code and org-tangle.
 
+* Dependencies
+
+These should hopefully be auto-installed with a script in the future. In the
+meantime, they're listed here for convenience.
+
+- [[https://github.com/lupoDharkael/flameshot][Flameshot]]
+- [[https://github.com/streamlink/streamlink][Streamlink]]
+- [[https://github.com/Airblader/i3][i3-gaps]]
+- [[https://github.com/GiedriusS/TwitchNotifier][TwitchNotifier]]
+- Compton
+- setxkbmap
+- dunst
+- nm-applet
+- tint2
+- rofi
+- pactl
+
 * i3
 
 ** Constants
