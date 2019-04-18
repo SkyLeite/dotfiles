@@ -69,7 +69,7 @@ Hi. Welcome to my dotfiles.
 #+NAME: navigation-table-generator
 #+BEGIN_SRC emacs-lisp :var table=navigation-table :results output :exports results
 (dolist (row table)
-  (princ (format "bindsym %s exec --no-startup-id %s # %s\n" (nth 0 row) (nth 1 row) (nth 2 row))))
+  (princ (format "bindsym %s exec --no-startup-id %s\n" (nth 0 row) (nth 1 row))))
 #+END_SRC
 
 *** Workspaces
@@ -103,7 +103,7 @@ Hi. Welcome to my dotfiles.
 #+NAME: shortcuts-table-generator
 #+BEGIN_SRC emacs-lisp :var table=shortcuts-table :results output :exports results
 (dolist (row table)
-  (princ (format "bindsym %s exec --no-startup-id %s # %s\n" (nth 0 row) (nth 1 row) (nth 2 row))))
+  (princ (format "bindsym %s exec --no-startup-id %s\n" (nth 0 row) (nth 1 row))))
 #+END_SRC
 
 ** Autostart Commands
@@ -126,11 +126,11 @@ Hi. Welcome to my dotfiles.
 #+NAME: autostart-table-generator
 #+BEGIN_SRC emacs-lisp :var table=autostart-table :results output :exports results
 (dolist (row table)
-  (princ (format "exec%s%s %s # %s\n"
+  (princ (format "exec%s%s %s\n"
                  (if (string= "t" (nth 1 row)) "_always" "")
                  (if (string= "nil" (nth 2 row)) " --no-startup-id" "")
                  (nth 0 row)
-                 (nth 3 row))))
+                 )))
 #+END_SRC
 ** Extra
 
