@@ -237,21 +237,112 @@ mode "resize" {
 <<extra>>
 #+END_SRC
 
+* Emacs
+:PROPERTIES:
+:header-args: :tangle config/doom.d/config.el
+:END:
 
-* Utility
+Oh boy.
 
-** Hook to resolve macros when tangling
+** Custom Bindings
+
+#+BEGIN_SRC emacs-lisp
+;; Custom bindings
+(map! :leader
+      :prefix ("o" . "open")
+       :when (featurep! :tools vterm)
+       :desc "Terminal"          "T" #'+vterm/open
+       :desc "Terminal in popup" "t" #'+vterm/open-popup-in-project)
+#+END_SRC
+
+** Configuration Variables
+
+*** Typescript / Javascript
+
+**** Enable TSX files to be parsed with web-mode
+
+#+BEGIN_SRC emacs-lisp
+(after! web-mode
+(after! tide
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+    (add-hook 'web-mode-hook
+            (lambda ()
+                (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (setup-tide-mode))))
+    ;; enable typescript-tslint checker
+    (flycheck-add-mode 'typescript-tslint 'web-mode))
+)
+#+END_SRC
+
+**** Set node-js executable path
+#+BEGIN_SRC emacs-lisp
+;; Node executable path
+(setq exec-path (append exec-path '("~/.nvm/versions/node/v10.15.3/bin")))
+#+END_SRC
+
+*** Company-Complete
+
+#+BEGIN_SRC emacs-lisp
+(after! company
+  (setq company-idle-delay 0.2
+        company-minimum-prefix-length 3))
+#+END_SRC
+
+*** Org Mode
+
+**** Org Publish
+
+#+BEGIN_SRC emacs-lisp
+(require 'ox-publish)
+(setq org-publish-project-alist
+      '(
+            ("org-notes"
+                :base-directory "~/Repos/blog"
+                :base-extension "org"
+                :publishing-directory "~/public_html/"
+                :recursive t
+                :publishing-function org-html-publish-to-html
+                :headline-levels 4             ; Just the default for this project.
+                :auto-preamble t
+            )
+
+            ("org-static"
+                :base-directory "~/Repos/blog"
+                :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+                :publishing-directory "~/public_html/"
+                :recursive t
+                :publishing-function org-publish-attachment
+            )
+
+            ("org" :components ("org-notes" "org-static"))
+      ))
+#+END_SRC
+
+**** Org Capture Templates
+
+#+BEGIN_SRC emacs-lisp
+;; Org capture templates
+(after! org-capture
+  (add-to-list 'org-capture-templates
+               '("s" "Song" entry (file+headline "~/org/bookmarks.org" "Music")
+                 "* TODO %x"))
+  )
+#+END_SRC
+
+**** Org Babel
+
+***** Hook to resolve macros when tangling
 #+BEGIN_SRC emacs-lisp :results none
 (add-hook 'org-babel-pre-tangle-hook
           (lambda () (org-macro-replace-all (org-macro--collect-macros))))
 #+END_SRC
 
-** Interactive function to tangle without changing the source file
+***** Interactive function to tangle without changing the source file
 #+BEGIN_SRC emacs-lisp :results none
 (defun org-tangle-without-saving ()
   (interactive)
   (cl-letf (((symbol-function 'save-buffer) #'ignore))
-    (org-babel-tangle)
+    (org-babel-tangle (buffer-file-name))
   )
   (undo-tree-undo))
 #+END_SRC

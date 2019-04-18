@@ -5,4 +5,6 @@
 * DONE Fix quoted commands
 * DONE Add :results none to utility functions
 * DONE Add support for window specific settings
+* DONE Add emacs config to readme
 * TODO Write a script to install dependencies
+* TODO Write systemd unit for TwitchNotifier
