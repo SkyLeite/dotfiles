@@ -74,7 +74,7 @@ Hi. Welcome to my dotfiles.
                  (if (string= "t" (nth 2 row))
                      " exec --no-startup-id"
                      "")
-                 (if (string= "t" (nth 2 row)) (format "\"%s\"" (nth 1 row)) (nth 1 row))))))
+                 (if (string= "t" (nth 2 row)) (format "\"%s\"" (nth 1 row)) (nth 1 row)))))
 #+END_SRC
 
 *** Workspaces
