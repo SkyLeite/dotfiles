@@ -60,6 +60,6 @@
 (defun org-tangle-without-saving ()
   (interactive)
   (cl-letf (((symbol-function 'save-buffer) #'ignore))
-    (org-babel-tangle)
+    (org-babel-tangle (buffer-file-name))
   )
   (undo-tree-undo))
