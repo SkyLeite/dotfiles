@@ -1,6 +1,16 @@
 #+TITLE: Dotfiles
+#+DATE: <2019-04-13 Sat>
+#+AUTHOR: Rodrigo Leite
+#+EMAIL: rodrigo@leite.dev
+#+LANGUAGE: en
+#+CREATOR: Emacs 26.1 (Org mode 9.2.2)
+
 
 Hi. Welcome to my dotfiles.
+
+The purpose of this README is to generate most (if not all) of my configuration
+files automatically. This is done using org mode as a templating engine,
+compiled through simple elisp code and org-tangle.
 
 * i3
 
@@ -207,6 +217,7 @@ mode "resize" {
 # Extra
 <<extra>>
 #+END_SRC
+
 
 * Utility
 
