@@ -5,6 +5,7 @@
 #+LANGUAGE: en
 #+CREATOR: Emacs 26.1 (Org mode 9.2.2)
 
+#+EXPORT_FILE_NAME: docs/index.html
 
 Hi. Welcome to my dotfiles.
 
