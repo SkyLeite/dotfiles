@@ -8,6 +8,15 @@ Hi. Welcome to my dotfiles.
           (lambda () (org-macro-replace-all (org-macro--collect-macros))))
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp :exports none
+(defun org-tangle-without-saving ()
+  (interactive)
+  (cl-letf (((symbol-function 'save-buffer) #'ignore))
+    (org-babel-tangle)
+  )
+  (undo-tree-undo))
+#+END_SRC
+
 * i3
 
 ** Constants
