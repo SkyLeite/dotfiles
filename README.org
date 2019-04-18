@@ -33,7 +33,7 @@ Hi. Welcome to my dotfiles.
 #+NAME: config-table-generator
 #+BEGIN_SRC emacs-lisp :var table=config-table :results output :exports results
 (dolist (row table)
-  (princ (format "%s %s # %s\n" (nth 0 row) (nth 1 row) (nth 2 row))))
+  (princ (format "%s %s\n" (nth 0 row) (nth 1 row))))
 #+END_SRC
 
 ** Keybinds
@@ -171,7 +171,7 @@ mode "resize" {
 
 ** Output
 
-#+BEGIN_SRC text :noweb yes :tangle test.config
+#+BEGIN_SRC text :noweb yes :tangle config/i3/config
 # Config
 <<config-table-generator()>>
 
