@@ -44,7 +44,7 @@ Hi. Welcome to my dotfiles.
 |-----------------------+------------------------------------------------+---------+--------------------------------------------------|
 | {{{mod}}}+Return      | i3-sensible-terminal                           | nil     | Opens a new terminal                             |
 | {{{mod}}}+Shift+q     | kill                                           | nil     | Kills the focused window                         |
-| {{{mod}}}+d           | "rofi -combi-modi window,drun,ssh -show combi" | t       | Runs rofi in combined mode                       |
+| {{{mod}}}+d           | 'rofi -combi-modi window,drun,ssh -show combi' | t       | Runs rofi in combined mode                       |
 | {{{mod}}}+h           | focus left                                     | nil     |                                                  |
 | {{{mod}}}+j           | focus down                                     | nil     |                                                  |
 | {{{mod}}}+k           | focus up                                       | nil     |                                                  |

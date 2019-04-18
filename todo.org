@@ -2,5 +2,5 @@
 
 * DONE Add support for non-exec bindings
 * DONE Add i3 configs to final output
-* TODO Fix quoted commands
+* DONE Fix quoted commands
 * TODO Add :results none to utility functions
