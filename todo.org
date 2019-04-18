@@ -1,0 +1,4 @@
+#+TITLE: todo
+
+* TODO Add support for non-exec bindings
+* TODO Add i3 configs to final output
