@@ -116,7 +116,10 @@ meantime, they're listed here for convenience.
 (let ((num 0))
   (while (< num 10)
     (setq num (+ num 1))
-    (princ (format "bindsym %s%d %s %d\n" (nth 0 (nth 0 table)) num (nth 1 (nth 0 table)) num))))
+    (princ (format "bindsym %s%d %s %d\n" (nth 0 (nth 0 table)) num (nth 1 (nth 0 table)) num))
+    (princ (format "bindsym %sShift+%d move to %s %d\n" (nth 0 (nth 0 table)) num (nth 1 (nth 0 table)) num))
+))
+
 #+END_SRC
 
 *** Shortcuts
