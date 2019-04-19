@@ -84,7 +84,7 @@ exec --no-startup-id tint2
 
 # Window settings
 for_window [instance="^org-capture$"] floating enable
-for_window [instance="^twitchPopup$"] floating enable
+for_window [instance="^twitchPopup$"] floating enable, sticky enable
 
 
 # Extra

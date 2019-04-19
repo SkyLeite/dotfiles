@@ -172,10 +172,10 @@ meantime, they're listed here for convenience.
 ** Window Settings
 
 #+NAME: window-table
-| Query                      | Setting         |
-|----------------------------+-----------------|
-| [instance="^org-capture$"] | floating enable |
-| [instance="^twitchPopup$"] | floating enable |
+| Query                      | Setting                        |
+|----------------------------+--------------------------------|
+| [instance="^org-capture$"] | floating enable                |
+| [instance="^twitchPopup$"] | floating enable, sticky enable |
 
 #+NAME: window-table-generator
 #+BEGIN_SRC emacs-lisp :var table=window-table :results output :exports results
