@@ -29,6 +29,7 @@ meantime, they're listed here for convenience.
 - tint2
 - rofi
 - pactl
+- mpv
 
 * i3
 

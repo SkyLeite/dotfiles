@@ -6,6 +6,6 @@
 * DONE Add :results none to utility functions
 * DONE Add support for window specific settings
 * DONE Add emacs config to readme
-* TODO Write a script to install dependencies
+* DONE Write a script to install dependencies
 * TODO Write systemd unit for TwitchNotifier
 * TODO Add tint2 config to readme

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-04-18 Thu 17:12 -->
+<!-- 2019-04-19 Fri 01:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dotfiles</title>
@@ -247,32 +247,32 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfd510b1">1. Dependencies</a></li>
-<li><a href="#org0176fd5">2. i3</a>
+<li><a href="#org26f50ee">1. Dependencies</a></li>
+<li><a href="#orga59914c">2. i3</a>
 <ul>
-<li><a href="#org207edbd">2.1. Constants</a></li>
-<li><a href="#orge60cb53">2.2. Config</a></li>
-<li><a href="#org4823589">2.3. Keybinds</a>
+<li><a href="#org67fe0e8">2.1. Constants</a></li>
+<li><a href="#orgbd519f8">2.2. Config</a></li>
+<li><a href="#org6fd1fb4">2.3. Keybinds</a>
 <ul>
-<li><a href="#orge6fdd5d">2.3.1. Navigation and i3 stuff</a></li>
-<li><a href="#org64f5753">2.3.2. Workspaces</a></li>
-<li><a href="#org83e08c8">2.3.3. Shortcuts</a></li>
+<li><a href="#org8aee2eb">2.3.1. Navigation and i3 stuff</a></li>
+<li><a href="#org952a8a6">2.3.2. Workspaces</a></li>
+<li><a href="#org06bc450">2.3.3. Shortcuts</a></li>
 </ul>
 </li>
-<li><a href="#org0ec9ad8">2.4. Autostart Commands</a></li>
-<li><a href="#org644e221">2.5. Window Settings</a></li>
-<li><a href="#orgc020cfa">2.6. Extra</a></li>
-<li><a href="#org53e8aaa">2.7. Output</a></li>
+<li><a href="#org1af3aac">2.4. Autostart Commands</a></li>
+<li><a href="#org0e09d09">2.5. Window Settings</a></li>
+<li><a href="#org1f79527">2.6. Extra</a></li>
+<li><a href="#org57f6651">2.7. Output</a></li>
 </ul>
 </li>
-<li><a href="#org90c3f4c">3. Emacs</a>
+<li><a href="#org7a36138">3. Emacs</a>
 <ul>
-<li><a href="#org92c5675">3.1. Custom Bindings</a></li>
-<li><a href="#org168aa5b">3.2. Configuration Variables</a>
+<li><a href="#orge8aa89d">3.1. Custom Bindings</a></li>
+<li><a href="#org695bbc1">3.2. Configuration Variables</a>
 <ul>
-<li><a href="#org88b9807">3.2.1. Typescript / Javascript</a></li>
-<li><a href="#orgd94fafd">3.2.2. Company-Complete</a></li>
-<li><a href="#orgba036ba">3.2.3. Org Mode</a></li>
+<li><a href="#orga659f59">3.2.1. Typescript / Javascript</a></li>
+<li><a href="#org99576d0">3.2.2. Company-Complete</a></li>
+<li><a href="#orga69e4da">3.2.3. Org Mode</a></li>
 </ul>
 </li>
 </ul>
@@ -290,8 +290,8 @@ files automatically. This is done using org mode as a templating engine,
 compiled through simple elisp code and org-tangle.
 </p>
 
-<div id="outline-container-orgfd510b1" class="outline-2">
-<h2 id="orgfd510b1"><span class="section-number-2">1</span> Dependencies</h2>
+<div id="outline-container-org26f50ee" class="outline-2">
+<h2 id="org26f50ee"><span class="section-number-2">1</span> Dependencies</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 These should hopefully be auto-installed with a script in the future. In the
@@ -310,16 +310,17 @@ meantime, they're listed here for convenience.
 <li>tint2</li>
 <li>rofi</li>
 <li>pactl</li>
+<li>mpv</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0176fd5" class="outline-2">
-<h2 id="org0176fd5"><span class="section-number-2">2</span> i3</h2>
+<div id="outline-container-orga59914c" class="outline-2">
+<h2 id="orga59914c"><span class="section-number-2">2</span> i3</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org207edbd" class="outline-3">
-<h3 id="org207edbd"><span class="section-number-3">2.1</span> Constants</h3>
+<div id="outline-container-org67fe0e8" class="outline-3">
+<h3 id="org67fe0e8"><span class="section-number-3">2.1</span> Constants</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Mod key: Mod4</li>
@@ -332,10 +333,10 @@ meantime, they're listed here for convenience.
 </div>
 </div>
 
-<div id="outline-container-orge60cb53" class="outline-3">
-<h3 id="orge60cb53"><span class="section-number-3">2.2</span> Config</h3>
+<div id="outline-container-orgbd519f8" class="outline-3">
+<h3 id="orgbd519f8"><span class="section-number-3">2.2</span> Config</h3>
 <div class="outline-text-3" id="text-2-2">
-<table id="org7772111" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="orgdf0c25f" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -388,14 +389,14 @@ gaps inner 10
 </div>
 </div>
 
-<div id="outline-container-org4823589" class="outline-3">
-<h3 id="org4823589"><span class="section-number-3">2.3</span> Keybinds</h3>
+<div id="outline-container-org6fd1fb4" class="outline-3">
+<h3 id="org6fd1fb4"><span class="section-number-3">2.3</span> Keybinds</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orge6fdd5d" class="outline-4">
-<h4 id="orge6fdd5d"><span class="section-number-4">2.3.1</span> Navigation and i3 stuff</h4>
+<div id="outline-container-org8aee2eb" class="outline-4">
+<h4 id="org8aee2eb"><span class="section-number-4">2.3.1</span> Navigation and i3 stuff</h4>
 <div class="outline-text-4" id="text-2-3-1">
-<table id="org54a2a9b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org3784ef9" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -607,10 +608,10 @@ bindsym Mod4+r mode "resize"
 </div>
 </div>
 
-<div id="outline-container-org64f5753" class="outline-4">
-<h4 id="org64f5753"><span class="section-number-4">2.3.2</span> Workspaces</h4>
+<div id="outline-container-org952a8a6" class="outline-4">
+<h4 id="org952a8a6"><span class="section-number-4">2.3.2</span> Workspaces</h4>
 <div class="outline-text-4" id="text-2-3-2">
-<table id="org7f34369" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org53a5255" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -638,23 +639,33 @@ bindsym Mod4+r mode "resize"
 
 <pre class="example">
 bindsym Mod4+1 workspace 1
+bindsym Mod4+Shift+1 move to workspace 1
 bindsym Mod4+2 workspace 2
+bindsym Mod4+Shift+2 move to workspace 2
 bindsym Mod4+3 workspace 3
+bindsym Mod4+Shift+3 move to workspace 3
 bindsym Mod4+4 workspace 4
+bindsym Mod4+Shift+4 move to workspace 4
 bindsym Mod4+5 workspace 5
+bindsym Mod4+Shift+5 move to workspace 5
 bindsym Mod4+6 workspace 6
+bindsym Mod4+Shift+6 move to workspace 6
 bindsym Mod4+7 workspace 7
+bindsym Mod4+Shift+7 move to workspace 7
 bindsym Mod4+8 workspace 8
+bindsym Mod4+Shift+8 move to workspace 8
 bindsym Mod4+9 workspace 9
+bindsym Mod4+Shift+9 move to workspace 9
 bindsym Mod4+10 workspace 10
+bindsym Mod4+Shift+10 move to workspace 10
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org83e08c8" class="outline-4">
-<h4 id="org83e08c8"><span class="section-number-4">2.3.3</span> Shortcuts</h4>
+<div id="outline-container-org06bc450" class="outline-4">
+<h4 id="org06bc450"><span class="section-number-4">2.3.3</span> Shortcuts</h4>
 <div class="outline-text-4" id="text-2-3-3">
-<table id="org74e36f2" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org124140b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -750,10 +761,10 @@ bindsym Mod4+t exec --no-startup-id ~/.dotfiles/scripts/rofi-twitch
 </div>
 </div>
 
-<div id="outline-container-org0ec9ad8" class="outline-3">
-<h3 id="org0ec9ad8"><span class="section-number-3">2.4</span> Autostart Commands</h3>
+<div id="outline-container-org1af3aac" class="outline-3">
+<h3 id="org1af3aac"><span class="section-number-3">2.4</span> Autostart Commands</h3>
 <div class="outline-text-3" id="text-2-4">
-<table id="org9d8be68" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="orgca1ac76" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -869,10 +880,10 @@ exec --no-startup-id tint2
 </div>
 </div>
 
-<div id="outline-container-org644e221" class="outline-3">
-<h3 id="org644e221"><span class="section-number-3">2.5</span> Window Settings</h3>
+<div id="outline-container-org0e09d09" class="outline-3">
+<h3 id="org0e09d09"><span class="section-number-3">2.5</span> Window Settings</h3>
 <div class="outline-text-3" id="text-2-5">
-<table id="orgf26ee9a" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org1ba86c0" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -894,27 +905,27 @@ exec --no-startup-id tint2
 
 <tr>
 <td class="org-left">[instance="<sup>twitchPopup</sup>$"]</td>
-<td class="org-left">floating enable</td>
+<td class="org-left">floating enable, sticky enable</td>
 </tr>
 </tbody>
 </table>
 
 <pre class="example">
 for_window [instance="^org-capture$"] floating enable
-for_window [instance="^twitchPopup$"] floating enable
+for_window [instance="^twitchPopup$"] floating enable, sticky enable
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgc020cfa" class="outline-3">
-<h3 id="orgc020cfa"><span class="section-number-3">2.6</span> Extra</h3>
+<div id="outline-container-org1f79527" class="outline-3">
+<h3 id="org1f79527"><span class="section-number-3">2.6</span> Extra</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 This is stuff that doesn't translate very well into literate programming :(
 </p>
 
 <div class="org-src-container">
-<pre class="src src-text" id="org139f689">#Resize mode
+<pre class="src src-text" id="org05ff844">#Resize mode
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -943,8 +954,8 @@ mode "resize" {
 </div>
 </div>
 
-<div id="outline-container-org53e8aaa" class="outline-3">
-<h3 id="org53e8aaa"><span class="section-number-3">2.7</span> Output</h3>
+<div id="outline-container-org57f6651" class="outline-3">
+<h3 id="org57f6651"><span class="section-number-3">2.7</span> Output</h3>
 <div class="outline-text-3" id="text-2-7">
 <div class="org-src-container">
 <pre class="src src-text"># Config
@@ -983,15 +994,25 @@ bindsym Mod4+r mode "resize"
 
 ## Workspaces
 bindsym Mod4+1 workspace 1
+bindsym Mod4+Shift+1 move to workspace 1
 bindsym Mod4+2 workspace 2
+bindsym Mod4+Shift+2 move to workspace 2
 bindsym Mod4+3 workspace 3
+bindsym Mod4+Shift+3 move to workspace 3
 bindsym Mod4+4 workspace 4
+bindsym Mod4+Shift+4 move to workspace 4
 bindsym Mod4+5 workspace 5
+bindsym Mod4+Shift+5 move to workspace 5
 bindsym Mod4+6 workspace 6
+bindsym Mod4+Shift+6 move to workspace 6
 bindsym Mod4+7 workspace 7
+bindsym Mod4+Shift+7 move to workspace 7
 bindsym Mod4+8 workspace 8
+bindsym Mod4+Shift+8 move to workspace 8
 bindsym Mod4+9 workspace 9
+bindsym Mod4+Shift+9 move to workspace 9
 bindsym Mod4+10 workspace 10
+bindsym Mod4+Shift+10 move to workspace 10
 
 
 ## Shortcuts
@@ -1023,7 +1044,7 @@ exec --no-startup-id tint2
 
 # Window settings
 for_window [instance="^org-capture$"] floating enable
-for_window [instance="^twitchPopup$"] floating enable
+for_window [instance="^twitchPopup$"] floating enable, sticky enable
 
 
 # Extra
@@ -1057,8 +1078,8 @@ mode "resize" {
 </div>
 </div>
 
-<div id="outline-container-org90c3f4c" class="outline-2">
-<h2 id="org90c3f4c"><span class="section-number-2">3</span> Emacs</h2>
+<div id="outline-container-org7a36138" class="outline-2">
+<h2 id="org7a36138"><span class="section-number-2">3</span> Emacs</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Some of this stuff might be specific to <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a>, like the <code>(!after)</code> macro.
@@ -1066,8 +1087,8 @@ Feel free to adapt things to your needs if you use a different distribution of E
 </p>
 </div>
 
-<div id="outline-container-org92c5675" class="outline-3">
-<h3 id="org92c5675"><span class="section-number-3">3.1</span> Custom Bindings</h3>
+<div id="outline-container-orge8aa89d" class="outline-3">
+<h3 id="orge8aa89d"><span class="section-number-3">3.1</span> Custom Bindings</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Custom bindings</span>
@@ -1081,16 +1102,16 @@ Feel free to adapt things to your needs if you use a different distribution of E
 </div>
 </div>
 
-<div id="outline-container-org168aa5b" class="outline-3">
-<h3 id="org168aa5b"><span class="section-number-3">3.2</span> Configuration Variables</h3>
+<div id="outline-container-org695bbc1" class="outline-3">
+<h3 id="org695bbc1"><span class="section-number-3">3.2</span> Configuration Variables</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org88b9807" class="outline-4">
-<h4 id="org88b9807"><span class="section-number-4">3.2.1</span> Typescript / Javascript</h4>
+<div id="outline-container-orga659f59" class="outline-4">
+<h4 id="orga659f59"><span class="section-number-4">3.2.1</span> Typescript / Javascript</h4>
 <div class="outline-text-4" id="text-3-2-1">
 </div>
 <ol class="org-ol">
-<li><a id="org584f510"></a>Enable TSX files to be parsed with web-mode<br />
+<li><a id="org7e70545"></a>Enable TSX files to be parsed with web-mode<br />
 <div class="outline-text-5" id="text-3-2-1-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">after!</span> web-mode
@@ -1108,7 +1129,7 @@ Feel free to adapt things to your needs if you use a different distribution of E
 </div>
 </li>
 
-<li><a id="orgae61961"></a>Set node-js executable path<br />
+<li><a id="org79591ce"></a>Set node-js executable path<br />
 <div class="outline-text-5" id="text-3-2-1-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Node executable path</span>
@@ -1120,8 +1141,8 @@ Feel free to adapt things to your needs if you use a different distribution of E
 </ol>
 </div>
 
-<div id="outline-container-orgd94fafd" class="outline-4">
-<h4 id="orgd94fafd"><span class="section-number-4">3.2.2</span> Company-Complete</h4>
+<div id="outline-container-org99576d0" class="outline-4">
+<h4 id="org99576d0"><span class="section-number-4">3.2.2</span> Company-Complete</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">after!</span> company
@@ -1132,12 +1153,12 @@ Feel free to adapt things to your needs if you use a different distribution of E
 </div>
 </div>
 
-<div id="outline-container-orgba036ba" class="outline-4">
-<h4 id="orgba036ba"><span class="section-number-4">3.2.3</span> Org Mode</h4>
+<div id="outline-container-orga69e4da" class="outline-4">
+<h4 id="orga69e4da"><span class="section-number-4">3.2.3</span> Org Mode</h4>
 <div class="outline-text-4" id="text-3-2-3">
 </div>
 <ol class="org-ol">
-<li><a id="orgb35bd4b"></a>Org Publish<br />
+<li><a id="orge7fea37"></a>Org Publish<br />
 <div class="outline-text-5" id="text-3-2-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #a9a1e1;">require</span> <span style="color: #51afef;">'</span><span style="color: #a9a1e1;">ox-publish</span><span style="color: #51afef;">)</span>
@@ -1168,7 +1189,7 @@ Feel free to adapt things to your needs if you use a different distribution of E
 </div>
 </li>
 
-<li><a id="orgda08185"></a>Org Capture Templates<br />
+<li><a id="orgd946cd8"></a>Org Capture Templates<br />
 <div class="outline-text-5" id="text-3-2-3-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Org capture templates</span>
@@ -1182,9 +1203,9 @@ Feel free to adapt things to your needs if you use a different distribution of E
 </div>
 </li>
 
-<li><a id="org1f63fd3"></a>Org Babel<br />
+<li><a id="org5c529c6"></a>Org Babel<br />
 <ol class="org-ol">
-<li><a id="org76ea8d8"></a>Hook to resolve macros when tangling<br />
+<li><a id="org50a262f"></a>Hook to resolve macros when tangling<br />
 <div class="outline-text-6" id="text-3-2-3-3-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #c678dd;">add-hook</span> <span style="color: #51afef;">'</span><span style="color: #dcaeea;">org-babel-pre-tangle-hook</span>
@@ -1194,7 +1215,7 @@ Feel free to adapt things to your needs if you use a different distribution of E
 </div>
 </li>
 
-<li><a id="orgfecd474"></a>Interactive function to tangle without changing the source file<br />
+<li><a id="org963aa1a"></a>Interactive function to tangle without changing the source file<br />
 <div class="outline-text-6" id="text-3-2-3-3-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">defun</span> <span style="color: #c678dd;">org-tangle-without-saving</span> <span style="color: #c678dd;">()</span>
@@ -1217,7 +1238,7 @@ Feel free to adapt things to your needs if you use a different distribution of E
 <div id="postamble" class="status">
 <p class="date">Date: 2019-04-13 Sat 00:00</p>
 <p class="author">Author: Rodrigo Leite</p>
-<p class="date">Created: 2019-04-18 Thu 17:12</p>
+<p class="date">Created: 2019-04-19 Fri 01:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
