@@ -1,3 +1,7 @@
+;; Usability stuff
+(setq display-line-numbers-type 'relative)
+
+
 ;; Custom bindings
 (map! :leader
       :prefix ("o" . "open")
