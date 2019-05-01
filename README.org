@@ -26,9 +26,7 @@ meantime, they're listed here for convenience.
 - setxkbmap
 - dunst
 - nm-applet
-- tint2
 - rofi
-- pactl
 - mpv
 
 * i3
@@ -52,12 +50,11 @@ meantime, they're listed here for convenience.
 ** Config
 
 #+NAME: config-table
-| Configuration     | Value                    | Description                                  |
-|-------------------+--------------------------+----------------------------------------------|
-| font              | pango:DejaVu Sans Mono 8 | Sets font                                    |
-| floating_modifier | {{{mod}}}                | Use Mouse+{{{mod}}} to drag floating windows |
-| new_window        | 1pixel                   |                                              |
-| gaps              | inner 10                 | Sets gap size (i3-gaps only)                 |
+| Configuration     | Value             | Description                                  |
+|-------------------+-------------------+----------------------------------------------|
+| font              | pango:monospace 9 | Sets font                                    |
+| floating_modifier | {{{mod}}}         | Use Mouse+{{{mod}}} to drag floating windows |
+| new_window        | 1pixel            |                                              |
 
 #+NAME: config-table-generator
 #+BEGIN_SRC emacs-lisp :var table=config-table :results output :exports results
@@ -71,7 +68,7 @@ meantime, they're listed here for convenience.
 #+NAME: navigation-table
 | Keybind               | Command                                      | Is Exec | Action                                           |
 |-----------------------+----------------------------------------------+---------+--------------------------------------------------|
-| {{{mod}}}+Return      | i3-sensible-terminal                         | t       | Opens a new terminal                             |
+| {{{mod}}}+Return      | termite                                      | t       | Opens a new terminal                             |
 | {{{mod}}}+Shift+q     | kill                                         | nil     | Kills the focused window                         |
 | {{{mod}}}+d           | rofi -combi-modi window,drun,ssh -show combi | t       | Runs rofi in combined mode                       |
 | {{{mod}}}+h           | focus left                                   | nil     |                                                  |
@@ -159,7 +156,6 @@ meantime, they're listed here for convenience.
 | ~/.dotfiles/xrandr/apply.sh {{{xrandrLayouts}}}             | t           | t          | Loads xrandr layouts        |
 | flameshot                                                   | nil         | nil        | Screenshot tool             |
 | nm-applet                                                   | nil         | nil        | Network Manager applet      |
-| tint2                                                       | nil         | nil        | Application bar             |
 
 #+NAME: autostart-table-generator
 #+BEGIN_SRC emacs-lisp :var table=autostart-table :results output :exports results
@@ -177,6 +173,8 @@ meantime, they're listed here for convenience.
 |----------------------------+--------------------------------|
 | [instance="^org-capture$"] | floating enable                |
 | [instance="^twitchPopup$"] | floating enable, sticky enable |
+| [class="Pavucontrol"]      | floating enable                |
+| [class="Kalu"]             | floating enable                |
 
 #+NAME: window-table-generator
 #+BEGIN_SRC emacs-lisp :var table=window-table :results output :exports results
@@ -214,6 +212,21 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+
+
+set $bg-color            #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676e7d
+set $urgent-bg-color     #e53935
+set $indicator-color     #a0a0a0
+
+# set window colors
+#                       border             background         text                 indicator
+client.focused          $bg-color          $bg-color          $text-color          $indicator-color
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
+client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          $indicator-color
 #+END_SRC
 
 ** Output

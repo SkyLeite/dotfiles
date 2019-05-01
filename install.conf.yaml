@@ -9,10 +9,6 @@
     ~/.bashrc: bashrc
     ~/.bash_logout: bash_logout
     ~/.zshrc: zshrc
-    ~/.config/Code/User:
-        path: config/Code/User
-        create: true
-        force: true
     ~/.config/mpv:
         path: config/mpv
         create: true
@@ -25,27 +21,19 @@
         path: config/i3
         create: true
         force: true
-    ~/.config/systemd/user:
-        path: systemd/user
-        create: true
-        force: true
-    ~/.config/polybar:
-        path: config/polybar
-        create: true
-        force: true
-    ~/.config/mopidy:
-        path: config/mopidy
-        create: true
-        force: true
     ~/.doom.d/config.el:
         path: config/doom.d/config.el
         create: true
         force: true
-    ~/.config/tint2/tint2rc:
-        path: config/tint2/tint2rc
-        create: true
-        force: true
     ~/.config/rofi-twitch/settings:
         path: config/rofi-twitch/settings
+        create: true
+        force: true
+    ~/.config/i3status:
+        path: config/i3status
+        create: true
+        force: true
+    ~/.config/compton.conf:
+        path: config/compton/compton.conf
         create: true
         force: true

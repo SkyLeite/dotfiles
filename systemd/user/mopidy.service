@@ -1,8 +1,0 @@
-[Unit]
-Description=Mopidy Music Player Daemon
-
-[Service]
-ExecStart=/home/rodrigo/.local/bin/mopidy
-
-[Install]
-WantedBy=default.target
