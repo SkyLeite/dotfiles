@@ -1,6 +1,6 @@
 ;; Usability stuff
 (setq display-line-numbers-type 'relative)
-
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
 ;; Custom bindings
 (map! :leader
@@ -50,6 +50,9 @@
 
             ("org" :components ("org-notes" "org-static"))
       ))
+
+;; Rust stuff
+(setq rust-format-on-save t)
 
 ;; Org capture templates
 (after! org-capture
