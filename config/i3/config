@@ -68,6 +68,7 @@ bindsym $mod+x exec ~/.emacs.d/bin/org-capture
 bindsym $mod+p exec i3lock --color 475263
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
 bindsym $mod+t exec ~/.dotfiles/scripts/rofi-twitch
+bindsym $mod+y exec emoji-keyboard -s
 
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
@@ -90,6 +91,7 @@ exec --no-startup-id xset +fp ~/.fonts
 exec --no-startup-id xset fp rehash
 exec --no-startup-id flameshot
 exec --no-startup-id xsettingsd
+exec --no-startup-id emoji-keyboard
 exec_always --no-startup-id feh --bg-max --randomize ~/Pictures/Wallpapers* &
 
 
