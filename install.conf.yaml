@@ -9,31 +9,16 @@
     ~/.bashrc: bashrc
     ~/.bash_logout: bash_logout
     ~/.zshrc: zshrc
-    ~/.config/mpv:
-        path: config/mpv
-        create: true
-        force: true
-    ~/.config/nvim/init.vim:
-        path: config/nvim/init.vim
-        create: true
-        force: true
-    ~/.config/i3:
-        path: config/i3
-        create: true
+    ~/.config/:
+        glob: true
+        path: config/*
+        relink: true
         force: true
     ~/.doom.d/config.el:
         path: config/doom.d/config.el
         create: true
         force: true
-    ~/.config/rofi-twitch/settings:
-        path: config/rofi-twitch/settings
-        create: true
-        force: true
-    ~/.config/i3status:
-        path: config/i3status
-        create: true
-        force: true
-    ~/.config/compton.conf:
-        path: config/compton/compton.conf
-        create: true
-        force: true
+    /etc/systemd/system/:
+        glob: tre
+        path: systemd/system/*
+        relink: true
