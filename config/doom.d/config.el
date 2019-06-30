@@ -27,7 +27,9 @@
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 3))
 
-(require 'ox-publish)
+(after! ox
+  (require 'ox-hugo))
+(setq org-babel-js-function-wrapper "console.log(require('util').inspect(function(){\n%s\n}()));")
 (setq org-publish-project-alist
       '(
             ("org-notes"

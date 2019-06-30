@@ -19,6 +19,10 @@
         create: true
         force: true
     /etc/systemd/system/:
-        glob: tre
+        glob: true
         path: systemd/system/*
+        relink: true
+    /etc/systemd/user/:
+        glob: true
+        path: systemd/user/*
         relink: true

@@ -1,0 +1,10 @@
+[Unit]
+Description=Sets microphone volume to a set amount
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c '~/.dotfiles/scripts/fixVolume.sh'
+Restart=always
+
+[Install]
+WantedBy=default.target
