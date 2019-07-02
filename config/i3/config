@@ -107,6 +107,7 @@ for_window [class="Kalu"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [class="Evolution"] move to workspace 9
 for_window [title="Slack Call Minipanel"] kill
+for_window [title="Blizzard Battle.net"] floating enable
 
 
 # Extra
