@@ -14,7 +14,7 @@ set $indicator-color     #a0a0a0
 
 # Keybinds
 ## Navigation
-bindsym $mod+Return exec --no-startup-id "i3-sensible-terminal"
+bindsym $mod+Return exec "i3-sensible-terminal"
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec "rofi -combi-modi window,drun,ssh -show combi"
 bindsym $mod+h focus left
@@ -64,6 +64,7 @@ bindsym $mod+Shift+10 move to workspace 10
 
 ## Shortcuts
 bindsym Print exec --no-startup-id flameshot gui
+bindsym $mod+Print exec --no-startup-id flameshot full -c
 bindsym $mod+x exec ~/.emacs.d/bin/org-capture
 bindsym $mod+p exec i3lock --color 475263
 bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
@@ -94,6 +95,7 @@ exec --no-startup-id flameshot
 exec --no-startup-id xsettingsd
 exec --no-startup-id emoji-keyboard
 exec --no-startup-id optimus-manager-qt
+exec --no-startup-id evolution
 exec_always --no-startup-id feh --bg-max --randomize ~/Pictures/Wallpapers* &
 
 
@@ -103,6 +105,8 @@ for_window [instance="^twitchPopup$"] floating enable, sticky enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Kalu"] floating enable
 for_window [class="Blueman-manager"] floating enable
+for_window [class="Evolution"] move to workspace 9
+for_window [title="Slack Call Minipanel"] kill
 
 
 # Extra
