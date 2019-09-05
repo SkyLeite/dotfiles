@@ -26,4 +26,5 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+export MSBuildSDKsPath=/opt/dotnet/sdk/2.2.108/Sdks
+export PATH="$HOME/.cargo/bin:$MSBuildSDKsPath:$PATH"

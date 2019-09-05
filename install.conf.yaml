@@ -14,8 +14,14 @@
         path: config/*
         relink: true
         force: true
-    ~/.doom.d/config.el:
-        path: config/doom.d/config.el
+    ~/.doom.d/:
+        glob: true
+        path: home/doom.d/*
+        create: true
+        force: true
+    ~/.ncmpcpp:
+        glob: true
+        path: home/.ncmpcpp/*
         create: true
         force: true
     /etc/systemd/system/:

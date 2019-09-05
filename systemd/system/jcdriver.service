@@ -1,8 +1,0 @@
-[Unit]
-Description=JCDriver - Nintendo Switch Joycon drivers
-After=bluetooth.service bluetooth.target
-
-[Service]
-Type=simple
-ExecStart=+/usr/bin/jcdriver
-Restart=always

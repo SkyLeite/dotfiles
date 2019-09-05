@@ -17,7 +17,7 @@ general {
     color_bad = '#e89393'
 }
 
-order += "clementine"
+order += "mpd_status"
 order += "volume master"
 order += "disk /"
 #order += "disk /data"
@@ -32,6 +32,12 @@ order += "cpu_usage"
 order += "load"
 order += "battery 0"
 order += "tztime local"
+
+mpris {
+    format = "[[{artist} - {title}]|[{title}]]"
+    format_none = "no player"
+    player_priority = "[mpd, cantata, vlc, bomi, *]"
+}
 
 #wireless wlp4s0 {
 #    format_up = "%quality  %essid %ip"
