@@ -33,10 +33,12 @@ order += "load"
 order += "battery 0"
 order += "tztime local"
 
-mpris {
-    format = "[[{artist} - {title}]|[{title}]]"
-    format_none = "no player"
-    player_priority = "[mpd, cantata, vlc, bomi, *]"
+mpd_status {
+    format = "{state} [{artist} - {title}|{file}] → [{next_artist} - {next_title}|{next_file}]"
+    cache_timeout = 1
+    state_play = "▷"
+    state_pause = "⏸"
+    state_stop = "⏹"
 }
 
 #wireless wlp4s0 {
