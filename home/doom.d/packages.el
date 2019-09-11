@@ -7,3 +7,5 @@
 ;; (package! builtin-package :disable t)
 
 (package! ox-hugo)
+(package! mpdel)
+(package! ivy-mpdel)
