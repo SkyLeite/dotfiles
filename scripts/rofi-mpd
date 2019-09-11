@@ -1,0 +1,343 @@
+#!/bin/bash
+
+# when set to exit, mpd_control will exit if you press escape
+# when set to break, mpd_control will go the upper level if possible
+ESC_ACTION="break"
+# source configuration file for rofi if exists
+
+PORT=6600
+
+ROFI="rofi -dmenu -i -p Search"
+MPC="mpc -p ${PORT}"
+
+# check if mpc is in PATH
+
+if [ ! -x "$(command -v mpc)" ]; then 
+	echo "ERROR: mpc is not installed or not in PATH"
+	exit
+fi
+
+add_after_current_song(){
+	
+	# playlist is empty, just add the song
+	if [ "$($MPC playlist | wc -l)" == "0" ]; then
+		$MPC add "$1" 
+
+	# there is no current song so mpd is stopped
+	# it seems to be impossible to determine the current songs' position when 
+	# mpd is stopped, so just add to the end
+	elif [ -z "$($MPC current)" ]; then 
+		$MPC play
+		CUR_POS=$($MPC  | tail -2 | head -1 | awk '{print $2}' | sed 's/#//' | awk -F/ '{print $1}')
+		END_POS=$($MPC playlist | wc -l)
+		$MPC add "$1"
+		$MPC move $(($END_POS+1)) $(($CUR_POS+1))	
+		$MPC stop
+
+	# at least 1 song is in the playlist, determine the position of the 
+	# currently played song and add $1 after it
+	else
+
+		CUR_POS=$($MPC  | tail -2 | head -1 | awk '{print $2}' | sed 's/#//' | awk -F/ '{print $1}')
+		END_POS=$($MPC playlist | wc -l)
+		$MPC add "$1"
+		$MPC move $(($END_POS+1)) $(($CUR_POS+1))	
+	fi
+}
+add_after_current_song_and_play(){
+
+	#playlist is empty, just add the song
+	if [ "$($MPC playlist | wc -l)" == "0" ]; then
+		$MPC add "$1" 
+		$MPC play
+
+	#there is no current song so mpd is stopped
+	#it seems to be impossible to determine the current songs' position when 
+	#mpd is stopped, so just add to the end
+	elif [ -z "$($MPC current)" ]; then 
+		$MPCplay
+		CUR_POS=$($MPC  | tail -2 | head -1 | awk '{print $2}' | sed 's/#//' | awk -F/ '{print $1}')
+		END_POS=$($MPC playlist | wc -l)
+		$MPC add "$1"
+		$MPC move $(($END_POS+1)) $(($CUR_POS+1))	
+		$MPC play $(($CUR_POS+1))
+
+	#at least 1 song is in the playlist, determine the position of the 
+	#currently played song and add $1 after it
+	else
+
+		CUR_POS=$($MPC | tail -2 | head -1 | awk '{print $2}' | sed 's/#//' | awk -F/ '{print $1}')
+		END_POS=$($MPC playlist | wc -l)
+		$MPC add "$1"
+		$MPC move $(($END_POS+1)) $(($CUR_POS+1))	
+		$MPC play $(($CUR_POS+1))
+	fi
+}
+
+search_by_artist () {
+
+	while true; do
+
+		ARTIST="$($MPC list artist | sort -f | $ROFI)";
+		if [ "$ARTIST" = "" ]; then $ESC_ACTION; fi
+		
+		while true; do
+
+			ALBUMS=$($MPC list album artist "$ARTIST" | sort -f);
+			ALBUM=$(echo -e "replace all\nadd all\n--------------------------\n$ALBUMS" | $ROFI);
+			if [ "$ALBUM" = "" ]; then $ESC_ACTION;
+			
+			elif [ "$ALBUM" = "replace all" ]; then
+				CUR_SONG=$($MPC current)
+				$MPC clear
+				$MPC find artist "$ARTIST" | $MPC add 
+				if [ -n "$CUR_SONG" ]; then $MPC  play; fi
+				$ESC_ACTION
+			elif [ "$ALBUM" = "add all" ]; then 
+				$MPC find artist "$ARTIST" | $MPC add
+				$ESC_ACTION
+			fi
+			
+			while true; do
+				
+				TITLES=$($MPC list title artist "$ARTIST" album "$ALBUM")
+				TITLE=$(echo -e "replace all\nadd all\n--------------------------\n$TITLES" | $ROFI);
+				if [ "$TITLE" = "" ]; then $ESC_ACTION
+				elif [ "$TITLE" = "replace all" ]; then
+					CUR_SONG=$($MPC current)
+					$MPC clear;
+					$MPC find artist "$ARTIST" album "$ALBUM" | $MPC add 
+					if [ -n "$CUR_SONG" ]; then $MPC play; fi
+					$ESC_ACTION
+				elif [ "$TITLE" = "add all" ]; then
+					$MPC find artist "$ARTIST" album "$ALBUM" | $MPC add 
+					$ESC_ACTION
+				
+				fi
+
+				while true; do
+					DEC=$(echo -e "add after current and play\nadd after current\nreplace\nadd at the end" | $ROFI);
+					case $DEC in 
+
+						"")
+						$ESC_ACTION
+						;;
+
+						"add after current and play")
+						add_after_current_song_and_play "$($MPC find artist "$ARTIST" album "$ALBUM" title "$TITLE" | head -1 )"
+						;;
+
+						"add after current")
+						add_after_current_song "$($MPC find artist "$ARTIST" album "$ALBUM" title "$TITLE" | head -1 )"
+						;;
+
+						"replace")
+						CUR_SONG=$($MPC current)
+						$MPC clear
+						$MPC find artist "$ARTIST" album "$ALBUM" title "$TITLE" | head -1 | $MPC add
+						if [ -n "$CUR_SONG" ]; then $MPC play; fi
+						;;
+						
+						"add at the end")
+						$MPC find artist "$ARTIST" album "$ALBUM" title "$TITLE" | head -1 | $MPC add
+						;;
+
+					esac
+					$ESC_ACTION
+				done
+			done
+		done
+	done
+}
+
+search_by_track () {
+
+	TITLE=$($MPC list title | sort -f | $ROFI)
+	if [ "$TITLE" = "" ]; then exit; fi
+	
+	SONG=$($MPC find title "$TITLE" | head -1) 
+	add_after_current_song "$SONG"
+
+}
+
+search_by_track_play_now () {
+
+	TITLE=$($MPC list title | sort -f | $ROFI)
+	if [ "$TITLE" = "" ]; then exit; fi
+	
+	SONG=$($MPC find title "$TITLE" | head -1) 
+	add_after_current_song_and_play "$SONG"
+
+}
+
+play_playlist () {
+
+	AVAIL_PLAYLISTS=$($MPC lsplaylists)
+	PLAYLIST=$($MPC lsplaylists | $ROFI);
+	if [ "$PLAYLIST" = "" ]; then exit; fi
+	# Check if answer is in available playlists; otherwise exit
+	# Prevents non-existant playlist from being added
+	for PL in $AVAIL_PLAYLISTS 
+		do
+		if [ "$PL" = "$PLAYLIST" ]; then
+		CUR_SONG=$($MPC current)
+		$MPC clear
+		$MPC load "$PLAYLIST";
+		if [ -n "$CUR_SONG" ]; then $MPC play; fi
+		fi
+	done
+	exit
+
+}
+
+jump_to_song () {
+
+	TITLE=$($MPC playlist | $ROFI);
+	if [ "$TITLE" = "" ]; then exit; fi
+	POS=$($MPC playlist | grep -in "$TITLE" | awk -F: '{print $1}'| head -n 1)
+	$MPC play $POS;
+
+}
+
+search_by_album () {
+
+	while true; do
+
+		ALBUM=$($MPC list album | sort -f | $ROFI);
+		if [ "$ALBUM" = "" ]; then $ESC_ACTION;
+		fi
+		
+		while true; do
+			
+			TITLES=$($MPC list title album "$ALBUM")
+			TITLE=$(echo -e "replace all\nadd all\n--------------------------\n$TITLES" | $ROFI);
+			if [ "$TITLE" = "" ]; then $ESC_ACTION
+			elif [ "$TITLE" = "replace all" ]; then
+				CUR_SONG=$($MPC current)
+				$MPC clear;
+				$MPC find album "$ALBUM" | $MPC add 
+				if [ -n "$CUR_SONG" ]; then $MPC play; fi
+				$ESC_ACTION
+			elif [ "$TITLE" = "add all" ]; then
+				$MPC find album "$ALBUM" | $MPC add 
+				$ESC_ACTION
+			
+			fi
+
+			while true; do
+				DEC=$(echo -e "add after current and play\nadd after current\nreplace\nadd at the end" | $ROFI);
+				case $DEC in 
+
+					"")
+					$ESC_ACTION
+					;;
+
+					"add after current and play")
+					add_after_current_song_and_play "$($MPC find album "$ALBUM" title "$TITLE" | head -1 )"
+					;;
+
+					"add after current")
+					add_after_current_song "$($MPC find album "$ALBUM" title "$TITLE" | head -1 )"
+					;;
+
+					"replace")
+					CUR_SONG=$($MPC current)
+					$MPC clear
+					$MPC find album "$ALBUM" title "$TITLE" | head -1 | $MPC add
+					if [ -n "$CUR_SONG" ]; then $MPC play; fi
+					;;
+					
+					"add at the end")
+					$MPC find album "$ALBUM" title "$TITLE" | head -1 | $MPC add
+					;;
+
+				esac
+				$ESC_ACTION
+			done
+		done
+	done
+
+}
+
+shuffle() {
+
+	$MPC shuffle
+
+}
+
+control() {
+	
+	CHOICE=$(echo -e "Toggle Play\nNext\nPrevious\n"| $ROFI);
+	if [ "$CHOICE" = "Toggle Play" ]; then $($MPC toggle); fi
+	if [ "$CHOICE" = "Next" ]; 	  then $($MPC next); fi
+	if [ "$CHOICE" = "Previous" ]; 	  then $($MPC prev); fi
+
+}
+
+display_help () {
+
+	echo "-a, --artist		search for artist, then album, then title"
+    	echo "-t, --track		search for a single track in the whole database"
+    	echo "-n, --now			search for a single track in the whole database and play it now"
+	echo "-p, --playlist		search for a playlist load it"
+	echo "-j, --jump		jump to another song in the current playlist"		 
+	echo "-l, --longplayer		search for album, then title"
+	echo "-s, --shuffle		shuffle songs"
+	echo "-c, --control		control the mpd daemon"
+	echo "--auto			choose option in rofi"
+
+}
+case $1 in
+	
+	-a|--artist)
+		search_by_artist
+	;;
+
+	-t|--track)
+		search_by_track
+	;;
+
+	-n|--now)	
+		search_by_track_play_now
+	;;
+
+	-p|--playlist)
+		play_playlist
+	;;
+
+	-j|--jump)
+		jump_to_song	
+	;;
+
+	-l|--longplayer)
+		search_by_album	
+	;;
+
+	-s|--shuffle)
+		shuffle
+	;;
+	--auto)
+		CHOICE=$(echo -e "By Artist\nBy Album\nBy Track\nBy Now\nJump\nShuffle\nControl"| $ROFI);
+		if [ "$CHOICE" = "By Artist" ]; then search_by_artist; fi
+		if [ "$CHOICE" = "By Album" ]; 	then search_by_album; fi
+		if [ "$CHOICE" = "By Track" ]; 	then search_by_track; fi
+		if [ "$CHOICE" = "By Now" ]; 	then search_by_track_play_now; fi
+		if [ "$CHOICE" = "Jump" ]; 	then jump_to_song; fi
+		if [ "$CHOICE" = "Shuffle" ]; 	then shuffle; fi
+		if [ "$CHOICE" = "Control" ]; 	then control; fi
+		exit
+	;;
+	-c|--control)
+		control
+	;;
+
+	-h|--help)
+		display_help
+	;;
+	
+	*)
+	echo "Usage: rofi-mpd [OPTION]"
+	echo "Try 'rofi-mpd --help' for more information."
+	;;
+
+esac
