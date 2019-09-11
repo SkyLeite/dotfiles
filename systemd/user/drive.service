@@ -1,0 +1,9 @@
+[Unit]
+Description=Dropbox Daemon
+
+[Service]
+ExecStart=/home/rodrigo/.dotfiles/scripts/rclone_music.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
