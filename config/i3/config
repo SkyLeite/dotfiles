@@ -100,7 +100,8 @@ exec --no-startup-id emoji-keyboard
 exec --no-startup-id optimus-manager-qt
 exec --no-startup-id evolution
 exec_always --no-startup-id feh --bg-max --randomize ~/Pictures/Wallpapers* &
-exec_always --no-startup-id setxkbmap -option caps:swapescape
+# exec_always --no-startup-id setxkbmap -option caps:swapescape
+# exec_always --no-startup-id setxkbmap us -variant intl
 
 
 # Window settings

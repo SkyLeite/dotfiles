@@ -24,6 +24,11 @@
         path: home/.ncmpcpp/*
         create: true
         force: true
+    ~/.zshrc:
+        glob: true
+        path: home/.zshrc
+        create: true
+        force: true
     /etc/systemd/system/:
         glob: true
         path: systemd/system/*
