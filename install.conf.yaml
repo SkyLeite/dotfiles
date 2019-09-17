@@ -1,30 +1,31 @@
 - defaults:
     link:
-        relink: true
+      force: true
+      relink: true
 
 - clean: ['~']
 
 - link:
-    ~/.profile: profile
-    ~/.bashrc: bashrc
-    ~/.bash_logout: bash_logout
-    ~/.zshrc: zshrc
-    ~/.config/:
+    /home/rodrigo/.profile: profile
+    /home/rodrigo/.bashrc: bashrc
+    /home/rodrigo/.bash_logout: bash_logout
+    /home/rodrigo/.zshrc: zshrc
+    /home/rodrigo/.config/:
         glob: true
         path: config/*
         relink: true
         force: true
-    ~/.doom.d/:
+    /home/rodrigo/.doom.d/:
         glob: true
         path: home/doom.d/*
         create: true
         force: true
-    ~/.ncmpcpp:
+    /home/rodrigo/.ncmpcpp:
         glob: true
         path: home/.ncmpcpp/*
         create: true
         force: true
-    ~/.zshrc:
+    /home/rodrigo/.zshrc:
         glob: true
         path: home/.zshrc
         create: true
