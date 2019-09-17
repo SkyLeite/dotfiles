@@ -12,6 +12,7 @@ export PATH="$PATH:/home/rodrigo/.yarn/bin"
 # Configs
 export EDITOR="emacsclient -nc"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disables dotnet telemetry
+export TERMINAL="alacritty"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/rodrigo/.oh-my-zsh"
