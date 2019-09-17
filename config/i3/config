@@ -3,6 +3,11 @@ set $mod Mod4
 font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 hide_edge_borders both
+smart_gaps on
+smart_borders on
+
+gaps inner 10
+gaps outer -2
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
@@ -30,7 +35,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+q layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
@@ -63,6 +68,7 @@ bindsym $mod+Shift+10 move to workspace 10
 
 
 ## Shortcuts
+bindsym $mod+e exec emacsclient -nc
 bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Print exec --no-startup-id flameshot full -c
 bindsym $mod+x exec ~/.emacs.d/bin/org-capture
