@@ -10,7 +10,7 @@ export PATH="$PATH:/home/rodrigo/.local/bin"
 export PATH="$PATH:/home/rodrigo/.yarn/bin"
 
 # Configs
-export EDITOR="emacsclient -nc"
+export EDITOR="emacsclient"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disables dotnet telemetry
 export TERMINAL="alacritty"
 
