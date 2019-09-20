@@ -3,6 +3,7 @@ Description=Dropbox Daemon
 
 [Service]
 ExecStart=/home/rodrigo/.dotfiles/scripts/rclone_music.sh
+LimitNOFILE=infinity
 Restart=always
 
 [Install]
