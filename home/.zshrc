@@ -4,6 +4,7 @@
 # PATH stuff
 # Golang
 export GOPATH="$HOME/.go"
+export GOROOT="/usr/lib/go"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:/snap/bin"
 export PATH="$PATH:/home/rodrigo/.local/bin"
