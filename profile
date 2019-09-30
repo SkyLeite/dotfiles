@@ -29,4 +29,4 @@ fi
 export MSBuildSDKsPath=/opt/dotnet/sdk/2.2.108/Sdks
 export PATH="$HOME/.cargo/bin:$MSBuildSDKsPath:$PATH"
 export TERMINAL="alacritty"
-setxkbmap us -variant intl -option caps:swapescape
+setxkbmap -layout br
