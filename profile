@@ -26,7 +26,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export MSBuildSDKsPath=/opt/dotnet/sdk/2.2.108/Sdks
+export MSBuildSDKsPath=/opt/dotnet/sdk/3.0.100-rc1-014190/Sdks
 export PATH="$HOME/.cargo/bin:$MSBuildSDKsPath:$PATH"
 export TERMINAL="alacritty"
-setxkbmap -layout br
+setxkbmap us -variant intl
