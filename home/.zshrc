@@ -117,6 +117,13 @@ export NVM_LAZY_LOAD=true
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+#
+
+## Functions
+# transfer.sh
+transfer() {
+    curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null;
+}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -130,6 +137,7 @@ alias l="lsd -lah"
 alias ls="lsd"
 alias n="ncmpcpp"
 alias tb="nc termbin.com 9999"
+alias transfer=transfer
 
 # [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 # [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
