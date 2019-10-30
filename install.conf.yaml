@@ -9,7 +9,6 @@
     /home/rodrigo/.profile: profile
     /home/rodrigo/.bashrc: bashrc
     /home/rodrigo/.bash_logout: bash_logout
-    /home/rodrigo/.zshrc: zshrc
     /home/rodrigo/.config/:
         glob: true
         path: config/*
@@ -28,6 +27,11 @@
     /home/rodrigo/.zshrc:
         glob: true
         path: home/.zshrc
+        create: true
+        force: true
+    /home/rodrigo/.zshenv:
+        glob: true
+        path: home/.zshenv
         create: true
         force: true
     /etc/systemd/system/:

@@ -3,17 +3,20 @@
 
 # PATH stuff
 # Golang
-export GOPATH="$HOME/.go"
-export GOROOT="/usr/lib/go"
-export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:/snap/bin"
-export PATH="$PATH:/home/rodrigo/.local/bin"
-export PATH="$PATH:/home/rodrigo/.yarn/bin"
+# export GOPATH="$HOME/.go"
+# export GOROOT="/usr/lib/go"
+# export PATH="$PATH:$GOPATH/bin"
+# export PATH="$PATH:/snap/bin"
+# export PATH="$PATH:/home/rodrigo/.local/bin"
+# export PATH="$PATH:/home/rodrigo/.yarn/bin"
+# export PATH="$PATH:/home/rodrigo/.dotnet/tools"
 
 # Configs
-export EDITOR="emacsclient"
-export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disables dotnet telemetry
-export TERMINAL="alacritty"
+# export EDITOR="emacsclient"
+# export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disables dotnet telemetry
+# export TERMINAL="alacritty"
+# export WINEPREFIX="/mnt/HDD/Machines/Wine/32"
+# export MSBuildSDKsPath="/opt/dotnet/sdk/3.0.100-rc1-014190/Sdks"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/rodrigo/.oh-my-zsh"
@@ -121,9 +124,9 @@ export NVM_LAZY_LOAD=true
 
 ## Functions
 # transfer.sh
-transfer() {
-    curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null;
-}
+#transfer() {
+#    curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename $1) | tee /dev/null;
+#}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

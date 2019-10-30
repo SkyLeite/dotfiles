@@ -9,3 +9,4 @@
 (package! ox-hugo)
 (package! mpdel)
 (package! ivy-mpdel)
+(package! evil-numbers)

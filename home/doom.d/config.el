@@ -31,7 +31,6 @@
 
 (after! ox
   (require 'ox-hugo))
-(setq org-babel-js-function-wrapper "console.log(require('util').inspect(function(){\n%s\n}()));")
 (setq org-publish-project-alist
       '(
             ("org-notes"
@@ -63,6 +62,9 @@
   (add-to-list 'org-capture-templates
                '("s" "Song" entry (file+headline "~/org/bookmarks.org" "Music")
                  "* TODO %x"))
+  (add-to-list 'org-capture-templates
+               '("t" "TODO" entry (file+headline "~/Documents/agenda.org" "Not filed")
+                 "* TODO %x"))
   )
 
 (add-hook 'org-babel-pre-tangle-hook
@@ -74,3 +76,7 @@
     (org-babel-tangle (buffer-file-name))
   )
   (undo-tree-undo))
+
+(after! org
+  (setq org-babel-js-function-wrapper
+        "require('sys').print(require('sys').inspect(function(){\n%s\n}()));"))
