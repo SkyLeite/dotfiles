@@ -16,7 +16,10 @@
 # export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Disables dotnet telemetry
 # export TERMINAL="alacritty"
 # export WINEPREFIX="/mnt/HDD/Machines/Wine/32"
-# export MSBuildSDKsPath="/opt/dotnet/sdk/3.0.100-rc1-014190/Sdks"
+export DOTNET_ROOT=/opt/dotnet
+export MSBuildSDKsPath="/opt/dotnet/sdk/2.2.108/Sdks"
+export GOPRIVATE=github.com/upnid/*
+export GO111MODULE=on
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/rodrigo/.oh-my-zsh"
