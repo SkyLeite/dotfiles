@@ -161,7 +161,7 @@ mode "resize" {
 
 bar {
     status_command i3status-rs ~/.config/i3status/config
-    font pango:monospace 9
+    font pango:DejaVu Sans Mono, FontAwesome 10
 
 	colors {
         background $bg-color
