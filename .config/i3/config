@@ -79,6 +79,7 @@ bindsym $mod+o exit
 bindsym $mod+i exec i3-layout-manager
 bindsym $mod+n exec clerk --no-tmux-ui -t
 bindsym $mod+m exec ashuffle
+bindsym $mod+g exec wmfocus
 
 bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec amixer sset Master 5%- && pkill -RTMIN+1 i3blocks
