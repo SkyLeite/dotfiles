@@ -32,9 +32,8 @@
 (straight-use-package 'company)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'toml-mode)
-(straight-use-package 'rust-mode)
+(straight-use-package 'rustic)
 (straight-use-package 'cargo)
-(straight-use-package 'flycheck-rust)
 (straight-use-package 'lsp-ui)
 (straight-use-package 'yasnippet)
 (straight-use-package 'company-lsp)
@@ -116,8 +115,7 @@
           (setq company-minimum-prefix-length 1))
 
 (use-package lsp-mode
-  :commands lsp
-  :config (add-hook 'rust-mode-hook #'lsp))
+  :commands lsp)
 
 (use-package company-lsp
   :after company lsp-mode
@@ -131,16 +129,11 @@
 
 (use-package toml-mode)
 
-(use-package rust-mode
-  :hook
-    (rust-mode . lsp))
+(use-package rustic
+  :config (setq rustic-lsp-server 'rust-analyzer))
 
 ;; Add keybindings for interacting with Cargo
-(use-package cargo
-  :hook (rust-mode . cargo-minor-mode))
-
-(use-package flycheck-rust
-  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(use-package cargo)
 
 (use-package lsp-ui)
 
