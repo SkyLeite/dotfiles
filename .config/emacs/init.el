@@ -115,7 +115,8 @@
           (setq company-minimum-prefix-length 1))
 
 (use-package lsp-mode
-  :commands lsp)
+  :commands lsp
+  :hook (prog-mode . lsp))
 
 (use-package company-lsp
   :after company lsp-mode
