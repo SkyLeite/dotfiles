@@ -116,7 +116,8 @@
 
 (use-package lsp-mode
   :commands lsp
-  :hook (prog-mode . lsp))
+  :hook (prog-mode . lsp)
+  :config (setq lsp-rust-server 'rust-analyzer))
 
 (use-package company-lsp
   :after company lsp-mode
@@ -131,7 +132,7 @@
 (use-package toml-mode)
 
 (use-package rustic
-  :config (setq rustic-lsp-server 'rust-analyzer))
+  :config (setq rustic-lsp-server nil))
 
 ;; Add keybindings for interacting with Cargo
 (use-package cargo)
