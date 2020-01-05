@@ -291,5 +291,10 @@
 		    ("t" lsp-find-type-definition "Find type definition")
 		    ("c" lsp-find-declaration "Find declaration"))
 
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
