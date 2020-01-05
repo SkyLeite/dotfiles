@@ -53,6 +53,20 @@
 (straight-use-package 'web-mode)
 (straight-use-package 'impatient-mode)
 (straight-use-package 'tide)
+(straight-use-package 'doom-modeline)
+(straight-use-package 'evil-surround)
+(straight-use-package 'ripgrep)
+(straight-use-package 'helm-lsp)
+
+(use-package helm-lsp)
+
+(use-package ripgrep)
+
+(use-package evil-surround
+  :config (global-evil-surround-mode 1))
+
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode))
 
 (use-package treemacs
   :defer t)
@@ -100,6 +114,8 @@
   ("b" hydra-buffer/body "Buffer")
   ("f" hydra-file/body "File")
   ("t" treemacs "Open Treemacs")
+  ("m" helm-M-x "Open M-x")
+  ("l" hydra-lsp/body "LSP Actions")
   ("<SPC>" helm-projectile-find-file "Open file in project")
   ("i" (find-file "~/.config/emacs/init.el") "Open init.el")))
 
@@ -116,8 +132,14 @@
 
 (use-package lsp-mode
   :commands lsp
+  :config (setq lsp-rust-server 'rust-analyzer)
   :hook (prog-mode . lsp)
-  :config (setq lsp-rust-server 'rust-analyzer))
+  :hydra (hydra-lsp (:color blue)
+		    ("a" helm-lsp-code-actions "Execute code action")
+		    ("r" lsp-rename "Rename symbol")
+		    ("d" lsp-describe-session "Describe session")
+		    ("o" lsp-organize-imports "Organize imports")
+		    ("x" lsp-workspace-restart "Restart workspace")))
 
 (use-package company-lsp
   :after company lsp-mode
@@ -143,7 +165,9 @@
   :after projectile
   :hydra (hydra-project (:color blue)
 			("p" helm-projectile-switch-project "Open project")
-			("a" projectile-add-known-project "Add project")))
+			("a" projectile-add-known-project "Add project")
+			("r" projectile-remove-known-project "Remove project")
+			("f" projectile-ripgrep "Find in project")))
 
 (use-package web-mode
   :mode (("\\.html$" . web-mode)
@@ -257,7 +281,15 @@
                        ("k" kill-current-buffer "Kill current buffer"))
 
 (defhydra hydra-file (:color blue)
-                     ("s" save-buffer "Save file"))
+		     ("f" find-file "Find file")
+		     ("s" save-buffer "Save file"))
+
+(defhydra hydra-lsp-find (:color blue)
+		    ("d" lsp-find-definition "Find definition")
+		    ("r" lsp-find-references "Find references")
+		    ("i" lsp-find-implementation "Find implementation")
+		    ("t" lsp-find-type-definition "Find type definition")
+		    ("c" lsp-find-declaration "Find declaration"))
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
