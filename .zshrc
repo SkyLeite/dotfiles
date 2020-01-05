@@ -1,1 +1,1 @@
-/home/rodrigo/.dotfiles/.zshrc
+alias mutt="mutt -F ~/.config/mutt/mutt.conf"
