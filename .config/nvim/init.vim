@@ -1,10 +1,3 @@
-" Install vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 " Rust / Cargo garbage
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -16,7 +9,7 @@ function! BuildComposer(info)
   endif
 endfunction
 
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'HerringtonDarkholme/yats.vim'
