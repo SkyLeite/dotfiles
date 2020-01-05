@@ -1,0 +1,10 @@
+[Unit]
+
+Description=Fetch mail using fdm
+After=network.target network-online.target dbus.socket
+Documentation=man:fdm(1)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/fdm fetch -f /home/rodrigo/.config/fdm/fdm.conf
+

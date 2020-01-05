@@ -1,0 +1,11 @@
+[Unit]
+Description=Fetch mail using fdm
+
+[Timer]
+# Uncomment to run the service two minutes after booting
+OnBootSec=2m
+OnUnitActiveSec=3m
+Persistant=true
+
+[Install]
+WantedBy=timers.target
