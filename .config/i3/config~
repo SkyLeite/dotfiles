@@ -100,7 +100,6 @@ exec --no-startup-id nm-applet
 exec --no-startup-id "nitrogen --restore"
 exec --no-startup-id "sleep 2s && kalu"
 exec --no-startup-id xinput set-prop "DELL0829:00 06CB:7E92 Touchpad" "libinput Tapping Enabled" 1
-exec_always --no-startup-id xinput set-prop "Logitech G403 Prodigy Gaming Mouse" "libinput Accel Profile Enabled" 0, 1
 exec --no-startup-id xset +fp ~/.fonts
 exec --no-startup-id xset fp rehash
 exec --no-startup-id flameshot
