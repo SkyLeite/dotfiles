@@ -28,6 +28,17 @@
 ; List packages that we need
 (straight-use-package 'use-package)
 
+(use-package tramp
+  :straight t
+  :config (add-to-list 'tramp-methods
+                       '("yadm"
+                         (tramp-login-program "yadm")
+                         (tramp-login-args (("enter")))
+                         (tramp-login-env (("SHELL") ("/bin/sh")))
+                         (tramp-remote-shell "/bin/sh")
+                         (tramp-remote-shell-args ("-c"))))
+          (setenv "SHELL" "/bin/bash"))
+
 (use-package magit
   :straight t)
 
