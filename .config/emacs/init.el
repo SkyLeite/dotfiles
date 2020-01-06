@@ -40,7 +40,10 @@
           (setenv "SHELL" "/bin/bash"))
 
 (use-package magit
-  :straight t)
+  :straight t
+  :hydra (hydra-magit (:color blue)
+		      ("g" magit "Open magit window")
+		      ("d" (magit-status "/yadm::") "Open magit window for YADM")))
 
 (use-package evil-magit
   :straight t)
@@ -120,6 +123,7 @@
   ("t" treemacs "Open Treemacs")
   ("m" helm-M-x "Open M-x")
   ("l" hydra-lsp/body "LSP Actions")
+  ("g" hydra-magit/body "Magit menu")
   ("<SPC>" helm-projectile-find-file "Open file in project")
   ("i" (find-file "~/.config/emacs/init.el") "Open init.el")))
 
