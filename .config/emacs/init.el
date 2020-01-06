@@ -27,84 +27,77 @@
 
 ; List packages that we need
 (straight-use-package 'use-package)
-(straight-use-package 'evil)
-(straight-use-package 'flycheck)
-(straight-use-package 'company)
-(straight-use-package 'lsp-mode)
-(straight-use-package 'toml-mode)
-(straight-use-package 'rustic)
-(straight-use-package 'cargo)
-(straight-use-package 'lsp-ui)
-(straight-use-package 'yasnippet)
-(straight-use-package 'company-lsp)
-(straight-use-package 'smartparens)
-(straight-use-package 'yasnippet-snippets)
-(straight-use-package 'projectile)
-(straight-use-package 'helm)
-(straight-use-package 'use-package-hydra)
-(straight-use-package 'ace-window)
-(straight-use-package 'hydra)
-(straight-use-package 'helm-projectile)
-(straight-use-package 'one-themes)
-(straight-use-package 'nix-mode)
-(straight-use-package 'treemacs)
-(straight-use-package 'treemacs-evil)
-(straight-use-package 'treemacs-projectile)
-(straight-use-package 'web-mode)
-(straight-use-package 'impatient-mode)
-(straight-use-package 'tide)
-(straight-use-package 'doom-modeline)
-(straight-use-package 'evil-surround)
-(straight-use-package 'ripgrep)
-(straight-use-package 'helm-lsp)
 
-(use-package helm-lsp)
+(use-package magit
+  :straight t)
 
-(use-package ripgrep)
+(use-package evil-magit
+  :straight t)
+
+(use-package helm-lsp
+  :straight t)
+
+(use-package ripgrep
+  :straight t)
 
 (use-package evil-surround
+  :straight t
   :config (global-evil-surround-mode 1))
 
 (use-package doom-modeline
+  :straight t
   :hook (after-init . doom-modeline-mode))
 
 (use-package treemacs
+  :straight t
   :defer t)
 
 (use-package treemacs-projectile
+  :straight t
   :after treemacs prijectile)
 
 (use-package treemacs-evil
+  :straight t
   :after treemacs evil)
 
 (use-package nix-mode
+  :straight t
   :mode "\\.nix\\'")
 
 (use-package one-themes
+  :straight t
   :init (load-theme 'one-dark t))
 
-(use-package use-package-hydra)
+(use-package use-package-hydra
+  :straight t)
 
-(use-package hydra)
+(use-package hydra
+  :straight t)
 
 (use-package helm
+  :straight t
   :config (require 'helm-config)
   :bind ("M-x" . helm-M-x))
 
 (use-package ace-window
+  :straight t
   :after hydra)
 
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+  :straight t)
 
 (use-package smartparens
+  :straight t
   :config
     (require 'smartparens-config)
     (smartparens-global-mode t))
 
 (use-package yasnippet
+  :straight t
   :config (yas-global-mode 1))
 
 (use-package evil
+  :straight t
   :after hydra
   :config (evil-mode 1)
           (define-key evil-normal-state-map (kbd "SPC") 'hydra-leader/body)
@@ -120,17 +113,20 @@
   ("i" (find-file "~/.config/emacs/init.el") "Open init.el")))
 
 (use-package flycheck
+  :straight t
   :diminish
   :init (global-flycheck-mode)
   :custom (flycheck-display-errors-delay .3)
   :hook (prog-mode . flycheck-mode))
 
 (use-package company
+  :straight t
   :hook (prog-mode . company-mode)
   :config (setq company-tooltip-align-annotations t)
           (setq company-minimum-prefix-length 1))
 
 (use-package lsp-mode
+  :straight t
   :commands lsp
   :config (setq lsp-rust-server 'rust-analyzer)
   :hook (prog-mode . lsp)
@@ -142,6 +138,7 @@
 		    ("x" lsp-workspace-restart "Restart workspace")))
 
 (use-package company-lsp
+  :straight t
   :after company lsp-mode
   :config
     (setq company-dabbrev-downcase 0)
@@ -151,17 +148,22 @@
   :init
     (push 'company-lsp company-backends))
 
-(use-package toml-mode)
+(use-package toml-mode
+  :straight t)
 
 (use-package rustic
+  :straight t
   :config (setq rustic-lsp-server nil))
 
 ;; Add keybindings for interacting with Cargo
-(use-package cargo)
+(use-package cargo
+  :straight t)
 
-(use-package lsp-ui)
+(use-package lsp-ui
+  :straight t)
 
 (use-package helm-projectile
+  :straight t
   :after projectile
   :hydra (hydra-project (:color blue)
 			("p" helm-projectile-switch-project "Open project")
@@ -170,6 +172,7 @@
 			("f" projectile-ripgrep "Find in project")))
 
 (use-package web-mode
+  :straight t
   :mode (("\\.html$" . web-mode)
          ("\\.djhtml$" . web-mode)
          ("\\.tsx$" . web-mode)
@@ -267,10 +270,12 @@
 ;; impatient mode: Live refresh of web pages
 ;; https://github.com/skeeto/impatient-mode
 (use-package impatient-mode
+  :straight t
   :commands (impatient-mode))
 
 
 (use-package projectile
+  :straight t
   :after hydra
   :config (projectile-mode +1)
           (setq projectile-project-search-path '("/mnt/hdd/projects")))
