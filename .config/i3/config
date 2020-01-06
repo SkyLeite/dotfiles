@@ -16,6 +16,17 @@ set $inactive-text-color #676e7d
 set $urgent-bg-color     #e53935
 set $indicator-color     #a0a0a0
 
+set $ws1 1: Browsing
+set $ws2 2: Programming
+set $ws3 3: Music
+set $ws4 4: Games
+set $ws5 5: Video
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws0 0
+
 
 # Keybinds
 ## Navigation
@@ -45,26 +56,26 @@ bindsym $mod+r mode "resize"
 
 
 ## Workspaces
-bindsym $mod+1 workspace 1
-bindsym $mod+Shift+1 move to workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+Shift+2 move to workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+Shift+3 move to workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+Shift+4 move to workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+Shift+5 move to workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+Shift+6 move to workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+Shift+7 move to workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+Shift+8 move to workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+Shift+9 move to workspace 9
-bindsym $mod+10 workspace 10
-bindsym $mod+Shift+10 move to workspace 10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+Shift+1 move to workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+Shift+2 move to workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+Shift+3 move to workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+Shift+4 move to workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+Shift+5 move to workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+Shift+6 move to workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+Shift+7 move to workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+Shift+8 move to workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+Shift+9 move to workspace $ws9
+bindsym $mod+10 workspace $ws10
+bindsym $mod+Shift+10 move to workspace $ws10
 
 
 ## Shortcuts
@@ -113,6 +124,8 @@ exec_always --no-startup-id feh --bg-max --randomize ~/Pictures/Wallpapers* &
 # exec_always --no-startup-id setxkbmap -option caps:swapescape
 # exec_always --no-startup-id setxkbmap us -variant intl
 
+exec firefox --class FirefoxMain
+
 
 # Window settings
 for_window [instance="^org-capture$"] floating enable
@@ -126,6 +139,11 @@ for_window [title="Blizzard Battle.net"] floating enable
 for_window [class="Minecraft 1.12.2"] fullscreen enable
 for_window [title="^LearnOpenGL$"] floating enable
 
+assign [class="^Firefox Main$"] → $ws1
+assign [class="^Wine$"] → $ws4
+assign [title="^ncmpcpp$"] → $ws3
+assign [title="^MultiMC5$"] → $ws4
+assign [title="^Minecraft"] → $ws4
 
 # Extra
 
