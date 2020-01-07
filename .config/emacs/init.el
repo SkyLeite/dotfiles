@@ -115,6 +115,9 @@
   :after hydra
   :config (evil-mode 1)
           (define-key evil-normal-state-map (kbd "SPC") 'hydra-leader/body)
+	  (define-key evil-normal-state-map (kbd "s") #'evil-avy-goto-line)
+	  (define-key evil-normal-state-map (kbd ";") #'evil-avy-goto-char)
+
   :hydra (hydra-leader (:color blue)
   ("w" ace-window "Switch window")
   ("p" hydra-project/body "Projects")
