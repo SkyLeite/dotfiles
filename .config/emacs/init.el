@@ -28,6 +28,16 @@
 ; List packages that we need
 (straight-use-package 'use-package)
 
+(use-package use-package-hydra
+  :straight t)
+
+(use-package hydra
+  :straight t)
+
+(use-package linum-relative
+  :straight t
+  :config (linum-on))
+
 (use-package tramp
   :straight t
   :config (add-to-list 'tramp-methods
@@ -40,12 +50,14 @@
           (setenv "SHELL" "/bin/bash"))
 
 (use-package magit
+  :after use-package-hydra hydra
   :straight t
   :hydra (hydra-magit (:color blue)
 		      ("g" magit "Open magit window")
 		      ("d" (magit-status "/yadm::") "Open magit window for YADM")))
 
 (use-package evil-magit
+  :after magit
   :straight t)
 
 (use-package helm-lsp
@@ -81,12 +93,6 @@
 (use-package one-themes
   :straight t
   :init (load-theme 'one-dark t))
-
-(use-package use-package-hydra
-  :straight t)
-
-(use-package hydra
-  :straight t)
 
 (use-package helm
   :straight t
