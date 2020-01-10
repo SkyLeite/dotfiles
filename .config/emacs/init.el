@@ -36,7 +36,7 @@
 
 (use-package linum-relative
   :straight t
-  :config (linum-on))
+  :config (linum-relative-mode))
 
 (use-package tramp
   :straight t
