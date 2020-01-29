@@ -5,3 +5,6 @@ alias paste="xclip -o -sel clip"
 source <(antibody init)
 
 antibody bundle < ~/.zsh_plugins
+
+# Disable almostontop by default
+almostontop off
