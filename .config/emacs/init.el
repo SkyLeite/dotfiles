@@ -28,11 +28,38 @@
 ; List packages that we need
 (straight-use-package 'use-package)
 
+(use-package exec-path-from-shell
+  :straight t
+  :config
+  (setq exec-path-from-shell-check-startup-files nil)
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-envs
+   '("NVM_BIN" "NPMBIN" "LC_ALL" "LANG" "LC_TYPE"
+     "SSH_AGENT_PID" "SSH_AUTH_SOCK" "SHELL")))
+
+(use-package eyebrowse
+  :straight t
+  :diminish eyebrowse-mode
+  :config (progn
+            (define-key eyebrowse-mode-map (kbd "C-1") 'eyebrowse-switch-to-window-config-1)
+            (define-key eyebrowse-mode-map (kbd "C-2") 'eyebrowse-switch-to-window-config-2)
+            (define-key eyebrowse-mode-map (kbd "C-3") 'eyebrowse-switch-to-window-config-3)
+            (define-key eyebrowse-mode-map (kbd "C-4") 'eyebrowse-switch-to-window-config-4)
+            (eyebrowse-mode t)
+            (setq eyebrowse-new-workspace t)))
+
+(use-package typescript-mode
+  :straight t)
+
+(use-package elm-mode
+  :straight t)
+
 (use-package use-package-hydra
   :straight t)
 
-(use-package hydra
-  :straight t)
+(use-package ivy
+  :straight t
+  :hook (after-init . counsel-mode))
 
 (use-package linum-relative
   :straight t
@@ -60,9 +87,10 @@
   :after magit
   :straight t)
 
-(use-package helm-lsp
-  :straight t)
-
+(use-package lsp-ivy
+  :straight (lsp-ivy :type git :host github :repo "emacs-lsp/lsp-ivy"
+                      :fork (:host github
+                             :repo "RodrigoLeiteF/lsp-ivy")))
 (use-package ripgrep
   :straight t)
 
@@ -76,7 +104,8 @@
 
 (use-package treemacs
   :straight t
-  :defer t)
+  :defer t
+  :config (setq treemacs-is-never-other-window nil))
 
 (use-package treemacs-projectile
   :straight t
@@ -93,11 +122,6 @@
 (use-package one-themes
   :straight t
   :init (load-theme 'one-dark t))
-
-(use-package helm
-  :straight t
-  :config (require 'helm-config)
-  :bind ("M-x" . helm-M-x))
 
 (use-package ace-window
   :straight t
@@ -130,11 +154,11 @@
   ("b" hydra-buffer/body "Buffer")
   ("f" hydra-file/body "File")
   ("t" treemacs "Open Treemacs")
-  ("m" helm-M-x "Open M-x")
+  ("m" counsel-M-x "Open M-x")
   ("l" hydra-lsp/body "LSP Actions")
   ("g" hydra-magit/body "Magit menu")
-  ("<SPC>" helm-projectile-find-file "Open file in project")
-  ("i" (find-file "~/.config/emacs/init.el") "Open init.el")))
+  ("<SPC>" counsel-projectile-find-file "Open file in project")
+  ("i" (counsel-find-file "~/.config/emacs/init.el") "Open init.el")))
 
 (use-package flycheck
   :straight t
@@ -155,7 +179,7 @@
   :config (setq lsp-rust-server 'rust-analyzer)
   :hook (prog-mode . lsp)
   :hydra (hydra-lsp (:color blue)
-		    ("a" helm-lsp-code-actions "Execute code action")
+		    ("a" lsp-ivy-execute-code-action "Execute code action")
 		    ("r" lsp-rename "Rename symbol")
 		    ("d" lsp-describe-session "Describe session")
 		    ("o" lsp-organize-imports "Organize imports")
@@ -186,11 +210,11 @@
 (use-package lsp-ui
   :straight t)
 
-(use-package helm-projectile
+(use-package counsel-projectile
   :straight t
   :after projectile
   :hydra (hydra-project (:color blue)
-			("p" helm-projectile-switch-project "Open project")
+			("p" counsel-projectile-switch-project "Open project")
 			("a" projectile-add-known-project "Add project")
 			("r" projectile-remove-known-project "Remove project")
 			("f" projectile-ripgrep "Find in project")))
@@ -304,13 +328,21 @@
   :config (projectile-mode +1)
           (setq projectile-project-search-path '("/mnt/hdd/projects")))
 
+(use-package ivy-posframe
+  :after ivy
+  :straight t
+  :config
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
+  (ivy-posframe-mode 1)
+  )
+
 (defhydra hydra-buffer (:color blue)
-                       ("b" helm-buffers-list "List buffers")
+                       ("b" ivy-switch-buffer "List buffers")
                        ("e" eval-buffer "Eval buffer")
                        ("k" kill-current-buffer "Kill current buffer"))
 
 (defhydra hydra-file (:color blue)
-		     ("f" find-file "Find file")
+		     ("f" counsel-find-file "Find file")
 		     ("s" save-buffer "Save file"))
 
 (defhydra hydra-lsp-find (:color blue)
@@ -326,6 +358,7 @@
       `((".*" ,temporary-file-directory t)))
 
 (setq-default indent-tabs-mode nil)
+(setq inhibit-startup-screen t)
 
 (show-paren-mode 1)
 (menu-bar-mode -1)
