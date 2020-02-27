@@ -1,5 +1,16 @@
-theme = "solarized-dark"
 icons = "awesome"
+
+[theme]
+name = "slick"
+
+[theme.overrides]
+separator = ""
+
+[[block]]
+block = "music"
+player = "mpd"
+marquee = true
+marquee_interval = 4
 
 [[block]]
 block = "maildir"
@@ -8,6 +19,13 @@ inboxes = ["/home/rodrigo/Mail/INBOX"]
 threshold_warning = 1
 threshold_critical = 10
 display_type = "new"
+
+[[block]]
+block = "toggle"
+command_on = "virsh start win10"
+command_off = "virsh shutdown win10"
+command_state = "virsh list --name | grep win10"
+text = "VM"
 
 [[block]]
 block = "disk_space"
@@ -48,5 +66,5 @@ block = "sound"
 
 [[block]]
 block = "time"
-interval = 60
+interval = 5
 format = "%a %d/%m %R"

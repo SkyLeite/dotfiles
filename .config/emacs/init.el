@@ -28,6 +28,57 @@
 ; List packages that we need
 (straight-use-package 'use-package)
 
+(use-package company-box
+  :straight t
+  :hook (company-mode . company-box-mode)
+  :config
+  (setq company-box-icons-unknown 'fa_question_circle)
+
+  (setq company-box-icons-elisp
+        '((fa_tag :face font-lock-function-name-face) ;; Function
+          (fa_cog :face font-lock-variable-name-face) ;; Variable
+          (fa_cube :face font-lock-constant-face) ;; Feature
+          (md_color_lens :face font-lock-doc-face))) ;; Face
+
+  (setq company-box-icons-yasnippet 'fa_bookmark)
+
+        (declare-function all-the-icons-faicon 'all-the-icons)
+        (declare-function all-the-icons-material 'all-the-icons)
+        (declare-function all-the-icons-octicon 'all-the-icons)
+        (setq company-box-icons-all-the-icons
+              `((Unknown . ,(all-the-icons-material "find_in_page" :height 0.85 :v-adjust -0.2))
+                (Text . ,(all-the-icons-faicon "text-width" :height 0.8 :v-adjust -0.05))
+                (Method . ,(all-the-icons-faicon "cube" :height 0.8 :v-adjust -0.05 :face 'all-the-icons-purple))
+                (Function . ,(all-the-icons-faicon "cube" :height 0.8 :v-adjust -0.05 :face 'all-the-icons-purple))
+                (Constructor . ,(all-the-icons-faicon "cube" :height 0.8 :v-adjust -0.05 :face 'all-the-icons-purple))
+                (Field . ,(all-the-icons-octicon "tag" :height 0.8 :v-adjust 0 :face 'all-the-icons-lblue))
+                (Variable . ,(all-the-icons-octicon "tag" :height 0.8 :v-adjust 0 :face 'all-the-icons-lblue))
+                (Class . ,(all-the-icons-material "settings_input_component" :height 0.85 :v-adjust -0.2 :face 'all-the-icons-orange))
+                (Interface . ,(all-the-icons-material "share" :height 0.85 :v-adjust -0.2 :face 'all-the-icons-lblue))
+                (Module . ,(all-the-icons-material "view_module" :height 0.85 :v-adjust -0.2 :face 'all-the-icons-lblue))
+                (Property . ,(all-the-icons-faicon "wrench" :height 0.8 :v-adjust -0.05))
+                (Unit . ,(all-the-icons-material "settings_system_daydream" :height 0.85 :v-adjust -0.2))
+                (Value . ,(all-the-icons-material "format_align_right" :height 0.85 :v-adjust -0.2 :face 'all-the-icons-lblue))
+                (Enum . ,(all-the-icons-material "storage" :height 0.85 :v-adjust -0.2 :face 'all-the-icons-orange))
+                (Keyword . ,(all-the-icons-material "filter_center_focus" :height 0.85 :v-adjust -0.2))
+                (Snippet . ,(all-the-icons-material "format_align_center" :height 0.85 :v-adjust -0.2))
+                (Color . ,(all-the-icons-material "palette" :height 0.85 :v-adjust -0.2))
+                (File . ,(all-the-icons-faicon "file-o" :height 0.85 :v-adjust -0.05))
+                (Reference . ,(all-the-icons-material "collections_bookmark" :height 0.85 :v-adjust -0.2))
+                (Folder . ,(all-the-icons-faicon "folder-open" :height 0.85 :v-adjust -0.05))
+                (EnumMember . ,(all-the-icons-material "format_align_right" :height 0.85 :v-adjust -0.2 :face 'all-the-icons-lblue))
+                (Constant . ,(all-the-icons-faicon "square-o" :height 0.85 :v-adjust -0.1))
+                (Struct . ,(all-the-icons-material "settings_input_component" :height 0.85 :v-adjust -0.2 :face 'all-the-icons-orange))
+                (Event . ,(all-the-icons-octicon "zap" :height 0.8 :v-adjust 0 :face 'all-the-icons-orange))
+                (Operator . ,(all-the-icons-material "control_point" :height 0.85 :v-adjust -0.2))
+                (TypeParameter . ,(all-the-icons-faicon "arrows" :height 0.8 :v-adjust -0.05))
+                (Template . ,(all-the-icons-material "format_align_left" :height 0.85 :v-adjust -0.2)))
+              company-box-icons-alist 'company-box-icons-all-the-icons)
+)
+
+(use-package all-the-icons
+  :straight t)
+
 (use-package exec-path-from-shell
   :straight t
   :config
@@ -48,11 +99,23 @@
             (eyebrowse-mode t)
             (setq eyebrowse-new-workspace t)))
 
+(use-package evil-commentary
+  :straight t
+  :config (evil-commentary-mode))
+
+(use-package editorconfig
+  :straight t
+  :config (editorconfig-mode 1))
+
+(use-package f
+  :straight t)
+
 (use-package typescript-mode
   :straight t)
 
 (use-package elm-mode
-  :straight t)
+  :straight t
+  :init (add-hook 'elm-mode-hook #'elm-format-on-save-mode))
 
 (use-package use-package-hydra
   :straight t)
@@ -63,7 +126,7 @@
 
 (use-package linum-relative
   :straight t
-  :config (linum-relative-mode))
+  :config (linum-relative-global-mode))
 
 (use-package tramp
   :straight t
@@ -109,7 +172,7 @@
 
 (use-package treemacs-projectile
   :straight t
-  :after treemacs prijectile)
+  :after treemacs projectile)
 
 (use-package treemacs-evil
   :straight t
@@ -145,8 +208,13 @@
   :after hydra
   :config (evil-mode 1)
           (define-key evil-normal-state-map (kbd "SPC") 'hydra-leader/body)
+          (define-key evil-insert-state-map (kbd "<C-SPC>") 'company-complete)
+          (define-key evil-normal-state-map (kbd "<C-SPC>") 'company-complete)
 	  (define-key evil-normal-state-map (kbd "s") #'evil-avy-goto-line)
 	  (define-key evil-normal-state-map (kbd ";") #'evil-avy-goto-char)
+
+  :init (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
 
   :hydra (hydra-leader (:color blue)
   ("w" ace-window "Switch window")
@@ -157,8 +225,11 @@
   ("m" counsel-M-x "Open M-x")
   ("l" hydra-lsp/body "LSP Actions")
   ("g" hydra-magit/body "Magit menu")
+  ("e" hydra-error/body "Errors menu")
   ("<SPC>" counsel-projectile-find-file "Open file in project")
-  ("i" (counsel-find-file "~/.config/emacs/init.el") "Open init.el")))
+  ("i" hydra-insert/body "Open file in project")
+  ("o" hydra-org/body "Org mode")
+  ("n" (find-file "~/.config/emacs/init.el") "Open init.el")))
 
 (use-package flycheck
   :straight t
@@ -170,13 +241,18 @@
 (use-package company
   :straight t
   :hook (prog-mode . company-mode)
-  :config (setq company-tooltip-align-annotations t)
-          (setq company-minimum-prefix-length 1))
+  :config
+    (setq company-tooltip-align-annotations t)
+    (setq company-minimum-prefix-length 1)
+    ;; (push 'company-yasnippet company-backends)
+    )
 
 (use-package lsp-mode
   :straight t
   :commands lsp
-  :config (setq lsp-rust-server 'rust-analyzer)
+  :config
+    (setq lsp-rust-server 'rust-analyzer)
+    (setq lsp-prefer-flymake nil)
   :hook (prog-mode . lsp)
   :hydra (hydra-lsp (:color blue)
 		    ("a" lsp-ivy-execute-code-action "Execute code action")
@@ -336,9 +412,23 @@
   (ivy-posframe-mode 1)
   )
 
+(use-package org-projectile
+  :straight t
+  :config
+   (org-projectile-per-project)
+   (setq org-projectile-per-project-filepath "todos.org")
+   (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+   (add-to-list 'org-capture-templates
+                (org-projectile-project-todo-entry))
+  )
+
+(use-package org-evil
+  :straight t)
+
 (defhydra hydra-buffer (:color blue)
                        ("b" ivy-switch-buffer "List buffers")
                        ("e" eval-buffer "Eval buffer")
+                       ("f" lsp-format-buffer "Format buffer")
                        ("k" kill-current-buffer "Kill current buffer"))
 
 (defhydra hydra-file (:color blue)
@@ -352,6 +442,21 @@
 		    ("t" lsp-find-type-definition "Find type definition")
 		    ("c" lsp-find-declaration "Find declaration"))
 
+(defhydra hydra-insert (:color blue)
+  ("t" org-insert-todo-heading-respect-content "Todo")
+  ("h" org-insert-heading-after-current "Heading")
+  ("s" yas-insert-snippet "Snippet"))
+
+(defhydra hydra-org (:color blue)
+  ("c" org-capture "Capture")
+  ("a" org-agenda "Agenda")
+  ("t" org-todo "Cycle todo"))
+
+(defhydra hydra-error (:color blue)
+		    ("e" flycheck-list-errors "List errors")
+		    ("j" flycheck-next-error "Next error")
+		    ("k" flycheck-previous-error "Previous error"))
+
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
@@ -363,3 +468,15 @@
 (show-paren-mode 1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
