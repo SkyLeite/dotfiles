@@ -32,7 +32,7 @@ set $ws0 0
 ## Navigation
 bindsym $mod+space exec "alacritty"
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec "rofi -combi-modi window,drun,ssh -show combi"
+bindsym $mod+d exec "wofi --show drun -s ~/.config/wofi/style.css -c ~/.config/wofi/config"
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -80,7 +80,7 @@ bindsym $mod+Shift+0 move to workspace $ws10
 
 ## Shortcuts
 bindsym $mod+e exec emacsclient -nc
-bindsym Print exec --no-startup-id flameshot gui
+bindsym Print exec --no-startup-id grim -g "$(slurp -d)" - | wl-copy
 bindsym $mod+Print exec --no-startup-id flameshot full -c
 bindsym $mod+x exec ~/.emacs.d/bin/org-capture
 bindsym $mod+p exec i3lock --color 475263
@@ -92,35 +92,31 @@ bindsym $mod+n exec clerk --no-tmux-ui -t
 bindsym $mod+m exec ashuffle
 bindsym $mod+g exec wmfocus
 
-bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer sset Master 5%- && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioRaiseVolume exec amixer sset Master 1%+ && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioLowerVolume exec amixer sset Master 1%- && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob
+bindsym XF86AudioMute exec (amixer get Master | grep off > /dev/null && amixer -q set Master unmute && amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print substr($2, 0, length($2)-1) }' > $SWAYSOCK.wob) || (amixer -q set Master mute && echo 0 > $SWAYSOCK.wob)
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause --ignore-player=firefox
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous --ignore-player=firefox
+bindsym XF86AudioNext exec --no-startup-id playerctl next --ignore-player=firefox
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Autostart
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id "compton -cC"
 exec --no-startup-id nm-applet
-exec --no-startup-id "nitrogen --restore"
 exec --no-startup-id "sleep 2s && kalu"
 exec --no-startup-id xinput set-prop "DELL0829:00 06CB:7E92 Touchpad" "libinput Tapping Enabled" 1
 exec_always --no-startup-id xinput set-prop "Logitech G403 Prodigy Gaming Mouse" "libinput Accel Profile Enabled" 0, 1
 exec --no-startup-id xset +fp ~/.fonts
 exec --no-startup-id xset fp rehash
-exec --no-startup-id flameshot
 exec --no-startup-id xsettingsd
 exec --no-startup-id emoji-keyboard
 exec --no-startup-id optimus-manager-qt
-exec --no-startup-id evolution
 exec --no-startup-id blueberry-tray
-exec_always --no-startup-id feh --bg-max --randomize ~/Pictures/Wallpapers* &
+exec mako
+exec mkfifo $SWAYSOCK.wob && tail -f $SWAYSOCK.wob | wob
+exec_always swaybg -i ~/Pictures/dqxi.jpg
 # exec_always --no-startup-id setxkbmap -option caps:swapescape
 # exec_always --no-startup-id setxkbmap us -variant intl
 
@@ -179,6 +175,10 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
+}
+
+input 65261:4871:ZSA_Ergodox_EZ {
+      xkb_layout us-br
 }
 
 input 1133:49283:Logitech_G403_Prodigy_Gaming_Mouse {
