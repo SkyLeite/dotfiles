@@ -1,0 +1,9 @@
+[Unit]
+Description=Beet Daemon
+
+[Service]
+ExecStart=/home/rodrigo/scripts/autobeet.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
