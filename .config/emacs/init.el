@@ -227,9 +227,19 @@
   ("g" hydra-magit/body "Magit menu")
   ("e" hydra-error/body "Errors menu")
   ("<SPC>" counsel-projectile-find-file "Open file in project")
-  ("i" hydra-insert/body "Open file in project")
+  ("i" hydra-insert/body "Insert")
   ("o" hydra-org/body "Org mode")
   ("n" (find-file "~/.config/emacs/init.el") "Open init.el")))
+
+(use-package org
+  :straight t
+  :config
+  (setq org-capture-templates
+      '(("i" "Idea" entry (file+headline "~/org/ideas.org" "Idea")
+         "* TODO %^{Type|Post|Project}\n  %i\n  %t")
+        )
+  )
+)
 
 (use-package flycheck
   :straight t
@@ -253,7 +263,9 @@
   :config
     (setq lsp-rust-server 'rust-analyzer)
     (setq lsp-prefer-flymake nil)
-  :hook (prog-mode . lsp)
+    (add-hook 'before-save-hook #'lsp-format-buffer)
+  :hook
+    (prog-mode . lsp)
   :hydra (hydra-lsp (:color blue)
 		    ("a" lsp-ivy-execute-code-action "Execute code action")
 		    ("r" lsp-rename "Rename symbol")
