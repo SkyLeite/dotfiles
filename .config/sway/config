@@ -53,6 +53,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+r mode "resize"
+bindsym $mod+t exec "alacritty --class pulsemixer -e pulsemixer"
 
 
 ## Workspaces
@@ -84,7 +85,7 @@ bindsym Print exec --no-startup-id grim -g "$(slurp -d)" - | wl-copy
 bindsym $mod+Print exec --no-startup-id flameshot full -c
 bindsym $mod+x exec ~/.emacs.d/bin/org-capture
 bindsym $mod+p exec i3lock --color 475263
-bindsym $mod+t exec ~/.dotfiles/scripts/rofi-twitch
+# bindsym $mod+t exec ~/.dotfiles/scripts/rofi-twitch
 # bindsym $mod+y exec emoji-keyboard -s
 bindsym $mod+o exit
 bindsym $mod+i exec i3-layout-manager
@@ -136,6 +137,8 @@ for_window [class="Minecraft 1.12.2"] fullscreen enable
 for_window [title="^colemak.png"] sticky enable
 for_window [title="^Picture-in-Picture$"] sticky enable
 for_window [title="^LearnOpenGL$"] floating enable
+for_window [title="^Volume Control$"] floating enable
+for_window [app_id="^pulsemixer$"] floating enable
 
 assign [class="^Firefox Main$"] → $ws1
 assign [class="^Wine$"] → $ws4
