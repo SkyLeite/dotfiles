@@ -57,6 +57,9 @@
 ;; Rust stuff
 (setq rust-format-on-save t)
 
+(after! rustic
+  (setq rustic-lsp-server 'rust-analyzer))
+
 ;; Org capture templates
 (after! org-capture
   (add-to-list 'org-capture-templates
@@ -80,3 +83,22 @@
 (after! org
   (setq org-babel-js-function-wrapper
         "require('sys').print(require('sys').inspect(function(){\n%s\n}()));"))
+
+(after! magit
+  (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
+
+;; (set-face-attribute 'default nil :height 130)
+(add-to-list 'exec-path "/home/rodrigo/.npm/bin")
+
+;; Haskell
+(setq lsp-haskell-process-path-hie "hie-wrapper")
+
+;; Elixir
+(setq lsp-clients-elixir-server-executable "elixir-ls")
+(setq auth-sources '("~/.authinfo"))
+
+(after! org-gcal
+  (setq org-gcal-client-id "460989211468-4v46gg3v3c9fvs33md69vpsdd3u6vlrh.apps.googleusercontent.com"
+      org-gcal-client-secret "LsFJC_x_OPokYcfwBkNPy6N6"
+      org-gcal-file-alist '(("rodrigolf.dev@gmail.com" .  "~/Documents/agenda.org")
+                            ("it1uheh885l77iuj1pilhm8skg@group.calendar.google.com" .  "~/Documents/work.org"))))
