@@ -2,7 +2,7 @@
 (setq display-line-numbers-type 'relative)
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
-(load-theme 'doom-Iosvkem t)
+(load-theme 'doom-nord t)
 
 ;; Custom bindings
 (map! :leader
@@ -102,3 +102,6 @@
       org-gcal-client-secret "LsFJC_x_OPokYcfwBkNPy6N6"
       org-gcal-file-alist '(("rodrigolf.dev@gmail.com" .  "~/Documents/agenda.org")
                             ("it1uheh885l77iuj1pilhm8skg@group.calendar.google.com" .  "~/Documents/work.org"))))
+
+(after! company-mode
+  (add-hook 'after-init-hook 'company-statistics-mode))

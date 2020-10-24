@@ -11,3 +11,4 @@
 (package! ivy-mpdel)
 (package! evil-numbers)
 (package! org-gcal :recipe (:host github :repo "kidd/org-gcal.el"))
+(package! company-statistics)
