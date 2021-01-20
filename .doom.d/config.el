@@ -2,7 +2,7 @@
 (setq display-line-numbers-type 'relative)
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
-(load-theme 'doom-nord t)
+(load-theme 'doom-tomorrow-night t)
 
 ;; Custom bindings
 (map! :leader
@@ -26,7 +26,7 @@
 (setq exec-path (append exec-path '("~/.nvm/versions/node/v10.15.3/bin")))
 
 (after! company
-  (setq company-idle-delay 0.2
+  (setq company-idle-delay 0.4
         company-minimum-prefix-length 3))
 
 (after! ox
@@ -79,10 +79,6 @@
     (org-babel-tangle (buffer-file-name))
   )
   (undo-tree-undo))
-
-(after! org
-  (setq org-babel-js-function-wrapper
-        "require('sys').print(require('sys').inspect(function(){\n%s\n}()));"))
 
 (after! magit
   (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
