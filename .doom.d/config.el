@@ -1,8 +1,7 @@
 ;; Usability stuff
 (setq display-line-numbers-type 'relative)
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-
-(load-theme 'doom-tomorrow-night t)
+(setq doom-font (font-spec :family "APL385 Unicode" :size 14 :weight 'light))
+(setq doom-theme 'doom-opera-light)
 
 ;; Custom bindings
 (map! :leader
@@ -10,17 +9,6 @@
        :when (featurep! :tools vterm)
        :desc "Terminal"          "T" #'+vterm/open
        :desc "Terminal in popup" "t" #'+vterm/open-popup-in-project)
-
-;; (after! web-mode
-;; (after! tide
-;;     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-;;     (add-hook 'web-mode-hook
-;;             (lambda ()
-;;                 (when (string-equal "tsx" (file-name-extension buffer-file-name))
-;;                 (setup-tide-mode))))
-;;     ;; enable typescript-tslint checker
-;;     (flycheck-add-mode 'typescript-tslint 'web-mode))
-;; )
 
 ;; Node executable path
 (setq exec-path (append exec-path '("~/.nvm/versions/node/v10.15.3/bin")))
@@ -31,28 +19,6 @@
 
 (after! ox
   (require 'ox-hugo))
-(setq org-publish-project-alist
-      '(
-            ("org-notes"
-                :base-directory "~/Repos/blog"
-                :base-extension "org"
-                :publishing-directory "~/public_html/"
-                :recursive t
-                :publishing-function org-html-publish-to-html
-                :headline-levels 4             ; Just the default for this project.
-                :auto-preamble t
-            )
-
-            ("org-static"
-                :base-directory "~/Repos/blog"
-                :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-                :publishing-directory "~/public_html/"
-                :recursive t
-                :publishing-function org-publish-attachment
-            )
-
-            ("org" :components ("org-notes" "org-static"))
-      ))
 
 ;; Rust stuff
 (setq rust-format-on-save t)
@@ -85,6 +51,7 @@
 
 ;; (set-face-attribute 'default nil :height 130)
 (add-to-list 'exec-path "/home/rodrigo/.npm/bin")
+(add-to-list 'exec-path "/usr/lib/elixir-ls")
 
 ;; Haskell
 (setq lsp-haskell-process-path-hie "hie-wrapper")
@@ -93,11 +60,10 @@
 (setq lsp-clients-elixir-server-executable "elixir-ls")
 (setq auth-sources '("~/.authinfo"))
 
-(after! org-gcal
-  (setq org-gcal-client-id "460989211468-4v46gg3v3c9fvs33md69vpsdd3u6vlrh.apps.googleusercontent.com"
-      org-gcal-client-secret "LsFJC_x_OPokYcfwBkNPy6N6"
-      org-gcal-file-alist '(("rodrigolf.dev@gmail.com" .  "~/Documents/agenda.org")
-                            ("it1uheh885l77iuj1pilhm8skg@group.calendar.google.com" .  "~/Documents/work.org"))))
 
-(after! company-mode
-  (add-hook 'after-init-hook 'company-statistics-mode))
+(use-package! lsp-tailwindcss :init
+              (setq! lsp-tailwindcss-add-on-mode t)
+              (setq! lsp-tailwindcss-server-version "0.5.10")
+              )
+
+(setq-hook! 'js-mode-hook +format-with-lsp nil)

@@ -21,7 +21,8 @@ set $indicator-color     #a0a0a0
 ## Navigation
 bindsym $mod+space exec "alacritty"
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec "rofi -combi-modi window,drun,ssh -show combi"
+bindsym $mod+q exec "~/.emacs.d/bin/doom everywhere"
+bindsym $mod+d exec "albert show"
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -35,7 +36,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+q layout toggle split
+bindsym $mod+z layout toggle split
 bindsym $mod+Shift+space floating toggle
 # bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
@@ -73,7 +74,7 @@ bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Print exec --no-startup-id flameshot full -c
 bindsym $mod+x exec ~/.emacs.d/bin/org-capture
 bindsym $mod+p exec i3lock --color 475263
-bindsym $mod+t exec ~/.dotfiles/scripts/rofi-twitch
+bindsym $mod+t exec yakuake
 # bindsym $mod+y exec emoji-keyboard -s
 bindsym $mod+o exit
 bindsym $mod+i exec i3-layout-manager
@@ -81,10 +82,10 @@ bindsym $mod+n exec clerk --no-tmux-ui -t
 bindsym $mod+m exec ashuffle
 bindsym $mod+g exec wmfocus
 
-bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+ && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer sset Master 5%- && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioRaiseVolume exec amixer sset Master 1%+ && pkill -RTMIN+1 i3blocks
-bindsym $mod+XF86AudioLowerVolume exec amixer sset Master 1%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym $mod+XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym $mod+XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
 bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
@@ -94,23 +95,24 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Autostart
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id "compton -cC"
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id "picom -cC"
 exec --no-startup-id nm-applet
 exec --no-startup-id "nitrogen --restore"
-exec --no-startup-id "sleep 2s && kalu"
-exec --no-startup-id xinput set-prop "DELL0829:00 06CB:7E92 Touchpad" "libinput Tapping Enabled" 1
+# exec --no-startup-id "sleep 2s && kalu"
+# exec --no-startup-id xinput set-prop "DELL0829:00 06CB:7E92 Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id xset +fp ~/.fonts
 exec --no-startup-id xset fp rehash
 exec --no-startup-id flameshot
-exec --no-startup-id xsettingsd
-exec --no-startup-id emoji-keyboard
-exec --no-startup-id optimus-manager-qt
-exec --no-startup-id evolution
-exec --no-startup-id blueberry-tray
-exec_always --no-startup-id feh --bg-max --randomize ~/Pictures/Wallpapers* &
+exec albert
+exec dunst
+exec ~/.screenlayout/default.sh
+# exec --no-startup-id xsettingsd
+# exec --no-startup-id emoji-keyboard
+# exec_always --no-startup-id feh --bg-max --randomize ~/Pictures/Wallpapers* &
 # exec_always --no-startup-id setxkbmap -option caps:swapescape
 # exec_always --no-startup-id setxkbmap us -variant intl
+exec yakuake
 
 
 # Window settings
@@ -124,6 +126,7 @@ for_window [title="Slack Call Minipanel"] kill
 for_window [title="Blizzard Battle.net"] floating enable
 for_window [class="Minecraft 1.12.2"] fullscreen enable
 for_window [title="^LearnOpenGL$"] floating enable
+for_window [instance="yakuake"] floating enable
 
 
 # Extra
@@ -160,13 +163,15 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bar {
+ bar {
     status_command i3status-rs ~/.config/i3status/config
     font pango:DejaVu Sans Mono, FontAwesome 10
+    position top
 
 	colors {
         background $bg-color
         separator #757575
+
         #                  border             background         text
         focused_workspace  $bg-color          $bg-color          $text-color
         inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color

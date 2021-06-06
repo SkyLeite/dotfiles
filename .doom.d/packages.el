@@ -12,3 +12,6 @@
 (package! evil-numbers)
 (package! org-gcal :recipe (:host github :repo "kidd/org-gcal.el"))
 (package! company-statistics)
+(package! eslintd-fix)
+(package! company-tabnine)
+(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))

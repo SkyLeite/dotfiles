@@ -1,5 +1,5 @@
-theme = "solarized-dark"
-icons = "awesome"
+theme = "native"
+icons = "awesome5"
 
 [[block]]
 block = "disk_space"
@@ -24,8 +24,8 @@ alert = 10.0
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+format_mem = "{mem_free_percents}"
+format_swap = "{swap_used_percents:1}"
 
 [[block]]
 block = "cpu"

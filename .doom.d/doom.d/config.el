@@ -25,6 +25,9 @@
 ;; Node executable path
 (setq exec-path (append exec-path '("~/.nvm/versions/node/v10.15.3/bin")))
 
+(after! js2-mode
+  (add-hook 'js2-mode-hook 'eslintd-fix-mode))
+
 (after! company
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 3))
